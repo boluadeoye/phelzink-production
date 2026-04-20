@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
 import MobileMenu from "./MobileMenu";
+import CircularLogo from "./CircularLogo";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,23 +12,17 @@ const Navbar = () => {
     <>
       <nav className="fixed top-0 w-full z-50 glass-header">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="relative w-28 h-8">
-            <Image 
-              src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688534/blog_assets/fkckb41bhbezjlcpjhnl.png"
-              alt="Phelzink Logo"
-              fill
-              className="object-contain object-left"
-              priority
-            />
+          <Link href="/" className="flex items-center">
+            <CircularLogo size="sm" />
           </Link>
           
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-10">
-            {["Home", "Shop", "Services", "About"].map((item) => (
+            {["Home", "Services", "Our Works", "About"].map((item) => (
               <Link 
                 key={item} 
-                href={`#${item.toLowerCase()}`}
-                className="text-[12px] font-bold uppercase tracking-[0.15em] text-ink/80 hover:text-emerald transition-colors"
+                href={`#${item.toLowerCase().replace(" ", "")}`}
+                className="text-[11px] font-bold uppercase tracking-[0.2em] text-ink/70 hover:text-emerald transition-colors"
               >
                 {item}
               </Link>
@@ -36,16 +30,20 @@ const Navbar = () => {
           </div>
 
           {/* Desktop CTA */}
-          <button className="hidden md:block bg-emerald text-white px-6 py-2 rounded-full text-[12px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-lg shadow-emerald/20">
+          <button className="hidden md:block bg-emerald text-white px-7 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-widest hover:brightness-110 transition-all shadow-lg shadow-emerald/20">
             Get started
           </button>
 
           {/* Mobile Trigger */}
           <button 
-            className="md:hidden p-2"
+            className="md:hidden p-2 group"
             onClick={() => setIsMenuOpen(true)}
           >
-            <Menu size={28} className="text-ink" />
+            <div className="space-y-1.5">
+              <div className="w-8 h-0.5 bg-ink group-hover:w-6 transition-all"></div>
+              <div className="w-6 h-0.5 bg-ink group-hover:w-8 transition-all"></div>
+              <div className="w-8 h-0.5 bg-ink group-hover:w-4 transition-all"></div>
+            </div>
           </button>
         </div>
       </nav>
