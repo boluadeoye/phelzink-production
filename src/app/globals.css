@@ -1,24 +1,12 @@
 @import "tailwindcss";
 
 @theme {
-  /* Phelzink Brand Palette */
   --color-ink: #0C0608;
-  --color-emerald: #22C55E;
-  --color-gold: #D2A546;
-  --color-blush: #F5E6E8;
-  --color-cream: #FDF8F0;
-  --color-coral: #FF6B35;
+  --color-emerald: #25D366;
   --color-surface: #F3F4F6;
   
-  /* Define explicit border color for the design system */
-  --color-border-subtle: color-mix(in srgb, #0C0608 10%, transparent);
-
-  /* Typography */
   --font-serif: "Cormorant Garamond", serif;
   --font-sans: "Montserrat", sans-serif;
-
-  /* Animation Physics */
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 :root {
@@ -27,46 +15,22 @@
 }
 
 @layer base {
-  * {
-    /* Use standard CSS variable for borders to avoid Tailwind build errors */
-    border-color: var(--color-border-subtle);
-  }
   body {
-    background-color: var(--background);
-    color: var(--foreground);
-    font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
   }
-  h1, h2, h3, .serif-display {
-    font-family: var(--font-serif);
-    font-style: italic;
+  h1, h2, h3 {
+    @apply font-serif italic tracking-tight;
   }
 }
 
-/* Custom Utilities for Figma Fidelity */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.serif-display {
+  font-family: var(--font-serif);
+  font-style: italic;
+  letter-spacing: -0.02em;
 }
 
-.section-padding {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-}
-
-@media (min-width: 768px) {
-  .section-padding {
-    padding-left: 3rem;
-    padding-right: 3rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section-padding {
-    padding-left: 6rem;
-    padding-right: 6rem;
-  }
+.glass-header {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }

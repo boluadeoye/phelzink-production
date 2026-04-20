@@ -2,35 +2,34 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 
 const Navbar = () => {
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-white/10 bg-white/80 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <Link href="/" className="relative w-32 h-10">
+    <nav className="fixed top-0 w-full z-50 glass-header">
+      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+        <Link href="/" className="relative w-28 h-8">
           <Image 
             src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688534/blog_assets/fkckb41bhbezjlcpjhnl.png"
             alt="Phelzink Logo"
             fill
-            className="object-contain"
+            className="object-contain object-left"
             priority
           />
         </Link>
         
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-10">
           {["Home", "Shop", "Services", "About"].map((item) => (
             <Link 
               key={item} 
               href={`#${item.toLowerCase()}`}
-              className="text-sm font-medium text-ink/70 hover:text-emerald transition-colors"
+              className="text-[13px] font-semibold uppercase tracking-widest text-ink/80 hover:text-emerald transition-colors"
             >
               {item}
             </Link>
           ))}
         </div>
 
-        <button className="bg-emerald text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-emerald/90 transition-all shadow-lg shadow-emerald/20">
+        <button className="bg-emerald text-white px-5 py-2 rounded-full text-[13px] font-bold hover:brightness-110 transition-all shadow-md shadow-emerald/20">
           Get started
         </button>
       </div>

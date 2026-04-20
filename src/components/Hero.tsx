@@ -6,8 +6,7 @@ import { cn } from "@/lib/utils";
 
 const Hero = () => {
   return (
-    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
+    <section className="relative h-[90vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
       <div 
         className="absolute inset-0 z-0"
         style={{
@@ -16,25 +15,26 @@ const Hero = () => {
           backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-ink/60 backdrop-brightness-75" />
+        {/* Precision Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/80" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white pt-16">
         <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6"
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl font-bold leading-[1.05] mb-8 tracking-tight"
         >
           Transform Your Brand with <br />
           <span className="serif-display text-emerald">Creative Design & Print Solutions</span>
         </motion.h1>
 
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-10 font-light leading-relaxed"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-12 font-medium leading-relaxed"
         >
           We bring your vision to life through exceptional branding, 
           innovative design, and high-quality printing services.
@@ -43,27 +43,26 @@ const Hero = () => {
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-5"
         >
-          <button className="w-full sm:w-auto bg-white text-ink px-8 py-4 rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all group">
+          <button className="w-full sm:w-auto bg-white text-ink px-10 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all group text-sm uppercase tracking-wider">
             Get Started
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
-          <button className="w-full sm:w-auto border border-white/30 bg-white/10 backdrop-blur-sm text-white px-8 py-4 rounded-lg font-bold hover:bg-white/20 transition-all">
+          <button className="w-full sm:w-auto border border-white/40 bg-white/5 backdrop-blur-md text-white px-10 py-4 rounded-xl font-bold hover:bg-white/10 transition-all text-sm uppercase tracking-wider">
             View Our Work
           </button>
         </motion.div>
       </div>
 
-      {/* Slider Indicators */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-2">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3">
         {[0, 1, 2, 3].map((i) => (
           <div 
             key={i} 
             className={cn(
-              "h-1 transition-all duration-500",
-              i === 1 ? "w-8 bg-white" : "w-2 bg-white/30"
+              "h-1 rounded-full transition-all duration-700",
+              i === 1 ? "w-10 bg-emerald" : "w-3 bg-white/20"
             )} 
           />
         ))}
