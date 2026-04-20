@@ -22,14 +22,14 @@ const Navbar = () => {
             <Link 
               key={item} 
               href={`#${item.toLowerCase()}`}
-              className="text-[13px] font-semibold uppercase tracking-widest text-ink/80 hover:text-emerald transition-colors"
+              className="text-[12px] font-bold uppercase tracking-[0.15em] text-ink/80 hover:text-emerald transition-colors"
             >
               {item}
             </Link>
           ))}
         </div>
 
-        <button className="bg-emerald text-white px-5 py-2 rounded-full text-[13px] font-bold hover:brightness-110 transition-all shadow-md shadow-emerald/20">
+        <button className="bg-emerald text-white px-6 py-2 rounded-full text-[12px] font-bold uppercase tracking-wider hover:brightness-110 transition-all shadow-lg shadow-emerald/20">
           Get started
         </button>
       </div>
