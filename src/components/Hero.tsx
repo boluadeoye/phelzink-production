@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative h-[90vh] min-h-[600px] w-full flex items-center justify-center overflow-hidden">
+    <section className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-ink">
+      {/* Background Image with Precision Overlay */}
       <div 
         className="absolute inset-0 z-0"
         style={{
@@ -15,55 +15,56 @@ const Hero = () => {
           backgroundPosition: 'center'
         }}
       >
-        {/* Precision Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-ink/70 via-ink/40 to-ink/80" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white pt-16">
+      {/* Slider Navigation Arrows (Desktop) */}
+      <button className="hidden md:flex absolute left-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20">
+        <ChevronLeft size={32} />
+      </button>
+      <button className="hidden md:flex absolute right-8 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/20 backdrop-blur-md border border-white/30 items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20">
+        <ChevronRight size={32} />
+      </button>
+
+      <div className="relative z-10 max-w-5xl mx-auto px-6 text-center text-white">
         <motion.h1 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-5xl md:text-7xl font-bold leading-[1.05] mb-8 tracking-tight"
+          className="text-[42px] md:text-[64px] lg:text-[80px] font-bold leading-[1.1] mb-8 tracking-tight font-sans"
         >
-          Transform Your Brand with <br />
-          <span className="serif-display text-emerald">Creative Design & Print Solutions</span>
+          Transform Your Brand with <br className="hidden md:block" />
+          Creative Design & Print Solutions
         </motion.h1>
 
         <motion.p 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-12 font-medium leading-relaxed"
+          transition={{ delay: 0.2 }}
+          className="text-lg md:text-2xl text-white/90 max-w-3xl mx-auto mb-12 font-medium leading-relaxed"
         >
           We bring your vision to life through exceptional branding, 
           innovative design, and high-quality printing services.
         </motion.p>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-5"
-        >
-          <button className="w-full sm:w-auto bg-white text-ink px-10 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all group text-sm uppercase tracking-wider">
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+          <button className="w-full sm:w-auto bg-white text-ink px-10 py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all text-lg">
             Get Started
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight size={20} />
           </button>
-          <button className="w-full sm:w-auto border border-white/40 bg-white/5 backdrop-blur-md text-white px-10 py-4 rounded-xl font-bold hover:bg-white/10 transition-all text-sm uppercase tracking-wider">
+          <button className="w-full sm:w-auto border-2 border-white text-white px-10 py-4 rounded-xl font-bold hover:bg-white hover:text-ink transition-all text-lg">
             View Our Work
           </button>
-        </motion.div>
+        </div>
       </div>
 
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex gap-3">
+      {/* Pagination Dots */}
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-3">
         {[0, 1, 2, 3].map((i) => (
           <div 
             key={i} 
-            className={cn(
-              "h-1 rounded-full transition-all duration-700",
-              i === 1 ? "w-10 bg-emerald" : "w-3 bg-white/20"
-            )} 
+            className={`transition-all duration-500 rounded-full ${
+              i === 1 ? "w-12 h-2 bg-white" : "w-2 h-2 bg-white/40"
+            }`} 
           />
         ))}
       </div>
