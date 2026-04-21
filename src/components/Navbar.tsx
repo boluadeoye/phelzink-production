@@ -11,26 +11,26 @@ const Navbar = () => {
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-white border-b border-gray-100">
-        <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
-          {/* Logo */}
-          <Link href="/" className="flex items-center">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-12 h-20 flex items-center justify-between relative">
+          {/* Logo - Left */}
+          <Link href="/" className="flex items-center z-10">
             <CircularLogo className="w-16 h-16 md:w-20 md:h-20" />
           </Link>
           
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Center (Strictly Hidden on Mobile) */}
           <div className="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
             {["Home", "Services", "Our Works", "About", "Contact"].map((item) => (
               <Link 
                 key={item} 
                 href={`#${item.toLowerCase().replace(" ", "")}`}
-                className="text-[14px] font-bold text-ink hover:text-emerald transition-colors"
+                className="text-[14px] font-bold text-ink hover:text-emerald transition-colors whitespace-nowrap"
               >
                 {item}
               </Link>
             ))}
           </div>
 
-          {/* Desktop Action: WhatsApp Button */}
+          {/* Desktop Action - Right (Strictly Hidden on Mobile) */}
           <Link 
             href="https://wa.me/2348125821771"
             target="_blank"
@@ -40,7 +40,7 @@ const Navbar = () => {
             Contact Us
           </Link>
 
-          {/* Mobile Trigger */}
+          {/* Mobile Trigger - (Strictly Hidden on Desktop) */}
           <button 
             className="lg:hidden p-2"
             onClick={() => setIsMenuOpen(true)}
