@@ -13,20 +13,15 @@ const brandLogos = [
 
 const Brands = () => {
   return (
-    <section className="py-24 bg-white">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-center text-xl font-medium text-ink/80 mb-16">
+        <h2 className="text-center text-lg font-bold text-ink/40 uppercase tracking-[0.2em] mb-16">
           Some of the brands we have worked with
         </h2>
-        <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+        <div className="flex flex-wrap justify-center items-center gap-10 md:gap-20">
           {brandLogos.map((logo, i) => (
-            <div key={i} className="relative w-32 h-12 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
-              <Image 
-                src={logo}
-                alt="Partner Brand"
-                fill
-                className="object-contain"
-              />
+            <div key={i} className="relative w-32 h-12 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all duration-500">
+              <Image src={logo} alt="Partner" fill className="object-contain" />
             </div>
           ))}
         </div>
