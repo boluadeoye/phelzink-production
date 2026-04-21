@@ -8,6 +8,7 @@ import About from "@/components/About";
 import Values from "@/components/Values";
 import Brands from "@/components/Brands";
 import Contact from "@/components/Contact";
+import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -23,6 +24,7 @@ export default function Home() {
       <Values />
       <Brands />
       <Contact />
+      <CTA />
       <Footer />
     </main>
   );
