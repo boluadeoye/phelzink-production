@@ -3,11 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const Values = () => {
-  const values = [
+  const values =[
     {
       title: "Quality First",
       desc: "We never compromise on quality, ensuring every project exceeds expectations with premium materials and attention to detail.",
-      // Custom Target SVG
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle cx="12" cy="12" r="9" stroke="black" strokeWidth="1.5"/>
@@ -19,7 +18,6 @@ const Values = () => {
     {
       title: "Client-Focused",
       desc: "Your success is our priority. We work closely with you to understand your vision and deliver results that drive your business forward.",
-      // Custom Users SVG
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -32,7 +30,6 @@ const Values = () => {
     {
       title: "Creative Excellence",
       desc: "Our creative team brings innovation and creativity to every project, crafting unique solutions that stand out.",
-      // Custom Ribbon SVG
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M12 15C15.3137 15 18 12.3137 18 9C18 5.68629 15.3137 3 12 3C8.68629 3 6 5.68629 6 9C6 12.3137 8.68629 15 12 15Z" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -43,7 +40,6 @@ const Values = () => {
     {
       title: "Continuous Innovation",
       desc: "We stay ahead of industry trends and technology to provide cutting-edge design and printing solutions.",
-      // Custom Trend SVG
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M23 6L13.5 15.5L8.5 10.5L1 18" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -55,7 +51,6 @@ const Values = () => {
 
   return (
     <section className="relative py-24 overflow-hidden bg-ink">
-      {/* Background with Precision Overlay */}
       <div 
         className="absolute inset-0 z-0 opacity-30 grayscale"
         style={{
@@ -69,7 +64,8 @@ const Values = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-4xl md:text-5xl font-serif italic text-white mb-4 tracking-tight">
+        {/* 100% Montserrat Bold - No Italics */}
+        <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 tracking-tight font-sans">
           Our Values
         </h2>
         <p className="text-white/60 text-sm md:text-base mb-20 font-sans">
@@ -86,16 +82,12 @@ const Values = () => {
               transition={{ delay: i * 0.1 }}
               className="flex flex-col items-center group"
             >
-              {/* Precision White Circle Container */}
               <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform duration-500">
                 {v.icon}
               </div>
-              
-              {/* Title with Figma-accurate Underline */}
               <h3 className="text-white text-xl font-bold mb-4 font-sans inline-block border-b border-white/20 pb-1 group-hover:border-white transition-colors">
                 {v.title}
               </h3>
-              
               <p className="text-white/50 text-[13px] leading-relaxed max-w-[260px] font-sans">
                 {v.desc}
               </p>
