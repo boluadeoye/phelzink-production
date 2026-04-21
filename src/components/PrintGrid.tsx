@@ -1,56 +1,57 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { 
-  CreditCard, ShoppingBag, Flag, StickyNote, 
-  Car, Layers, Tag, LucideIcon 
-} from "lucide-react";
 
-interface PrintItem {
-  name: string;
-  icon: LucideIcon;
-}
-
-const printItems: PrintItem[] = [
-  { name: "Business Card", icon: CreditCard },
-  { name: "Tote Bag", icon: ShoppingBag },
-  { name: "Rollup Banner", icon: Layers },
-  { name: "Paper Bag", icon: ShoppingBag },
-  { name: "Notepad", icon: StickyNote },
-  { name: "Car Branding", icon: Car },
-  { name: "Sticker", icon: Tag },
-  { name: "Flag Banner", icon: Flag },
+const printItems = [
+  { name: "Business card", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748711/blog_assets/puvwepzygs9xuuicpbt9.png" },
+  { name: "Tote Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748719/blog_assets/mafn1xjlsujj3ophcjrq.png" },
+  { name: "Rollup Banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748706/blog_assets/dqs8wgtvgpchmnvvzdi0.png" },
+  { name: "Paper Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748730/blog_assets/ivfzewrizpcuhudmxies.png" },
+  { name: "Notepad", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748735/blog_assets/dkfhzh1ovfcnaatncss6.png" },
+  { name: "Car branding", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748738/blog_assets/fszsrhdaqrjos0kwsvmx.png" },
+  { name: "Sticker", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748698/blog_assets/thsmwsrgoumnvbbwhyu9.png" },
+  { name: "Fly banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748701/blog_assets/ewcjasl7tsn52k66rz7k.png" },
 ];
 
 const PrintGrid = () => {
   return (
-    <section className="section-padding bg-surface">
-      <div className="max-w-7xl mx-auto">
+    <section className="py-24 bg-white">
+      <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-ink mb-4">What we can print for you</h2>
-          <p className="text-ink/60 max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-ink mb-8 leading-tight">
+            What we can print <br /> for you
+          </h2>
+          <p className="text-ink/60 max-w-2xl mx-auto text-lg leading-relaxed">
             From business cards and brochures to signage and promotional products, 
             we offer a wide range of printing services that can be customized to 
             meet the unique needs of our clients.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {printItems.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <motion.div 
-                key={index}
-                whileHover={{ y: -5 }}
-                className="bg-white p-8 rounded-2xl flex flex-col items-center text-center gap-4 shadow-sm border border-ink/5"
-              >
-                <div className="w-16 h-16 bg-surface rounded-full flex items-center justify-center text-ink/40">
-                  <Icon size={32} />
-                </div>
-                <span className="font-semibold text-ink text-sm">{item.name}</span>
-              </motion.div>
-            );
-          })}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-12">
+          {printItems.map((item, index) => (
+            <motion.div 
+              key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.05 }}
+              className="flex flex-col items-center group"
+            >
+              <div className="relative w-full aspect-square overflow-hidden bg-[#F3F4F6] mb-4">
+                <Image 
+                  src={item.image}
+                  alt={item.name}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <span className="text-sm font-medium text-ink/80 group-hover:text-emerald transition-colors">
+                {item.name}
+              </span>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
