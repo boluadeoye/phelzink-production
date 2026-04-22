@@ -1,18 +1,12 @@
 import type { Metadata } from "next";
-import { Montserrat, Cormorant_Garamond } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.css";
 
+// Explicitly loading the 900 (Black) weight for industrial typography
 const sans = Montserrat({
   subsets: ["latin"],
   variable: "--font-sans",
-  weight: ["300", "400", "500", "600", "700"],
-});
-
-const serif = Cormorant_Garamond({
-  subsets: ["latin"],
-  variable: "--font-serif",
-  weight: ["300", "400", "500", "600", "700"],
-  style: ["italic", "normal"],
+  weight:["300", "400", "500", "600", "700", "800", "900"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${sans.variable} ${serif.variable} font-sans antialiased`}>
+      <body className={`${sans.variable} font-sans antialiased`}>
         {children}
       </body>
     </html>
