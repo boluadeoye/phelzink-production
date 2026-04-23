@@ -1,34 +1,78 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
+const images = [
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939927/blog_assets/akarw2znltgqktvb8ecd.jpg",
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939881/blog_assets/vvsw4gjdnh0daydfknes.jpg",
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939898/blog_assets/t7h9ludvpcmtg76j8ypy.jpg",
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939941/blog_assets/lmfowmy5ffnzqdm6zlrc.jpg",
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939972/blog_assets/nhalpbll0vplalkztt7v.jpg",
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939996/blog_assets/ddyv2ivvfyv4enokrunf.jpg"
+];
+
 const Hero = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextImage = useCallback(() => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  }, []);
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  useEffect(() => {
+    const timer = setInterval(nextImage, 6000);
+    return () => clearInterval(timer);
+  }, [nextImage]);
+
   return (
     <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[600px] lg:h-[750px] mt-[70px]">
       
+      {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
-        <Image 
-          src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688504/blog_assets/gjf6nnbcko5jjauryamd.png"
-          alt="Background"
-          fill
-          className="object-cover"
-          priority
-        />
-        <div className="absolute inset-0 bg-black/60" />
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image 
+              src={images[currentIndex]}
+              alt={`Phelzink Production Slide ${currentIndex + 1}`}
+              fill
+              className="object-cover"
+              priority={currentIndex === 0}
+            />
+          </motion.div>
+        </AnimatePresence>
+        {/* Precision Gradient Overlay */}
+        <div className="absolute inset-0 bg-black/50 z-[1]" />
       </div>
 
-      <button className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white items-center justify-center text-ink hover:scale-110 transition-transform z-20 shadow-lg">
+      {/* Desktop Slider Arrows */}
+      <button 
+        onClick={prevImage}
+        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20 shadow-lg"
+      >
         <ChevronLeft size={20} />
       </button>
-      <button className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white items-center justify-center text-ink hover:scale-110 transition-transform z-20 shadow-lg">
+      <button 
+        onClick={nextImage}
+        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20 shadow-lg"
+      >
         <ChevronRight size={20} />
       </button>
 
+      {/* Content Container */}
       <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center text-white">
-        {/* Dense Typographic Block: 900 Weight, Negative Leading */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -42,13 +86,12 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-[15px] md:text-[18px] text-white/90 font-sans max-w-2xl mx-auto mb-12 leading-relaxed"
+          className="text-[15px] md:text-[18px] text-white/90 font-sans max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           We bring your vision to life through exceptional branding, 
           innovative design, and high-quality printing services.
         </motion.p>
 
-        {/* High-Impact Functional Buttons */}
         <div className="flex flex-col w-full md:flex-row md:w-auto items-center justify-center gap-5">
           <Link 
             href="#contact"
@@ -66,11 +109,17 @@ const Hero = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
-        <div className="w-8 h-1.5 bg-white rounded-full" />
-        <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-        <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
-        <div className="w-1.5 h-1.5 bg-white/40 rounded-full" />
+      {/* Pagination Dots (6 Dots for 6 Images) */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+        {images.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentIndex(i)}
+            className={`transition-all duration-500 rounded-full ${
+              currentIndex === i ? "w-10 h-2 bg-white" : "w-2 h-2 bg-white/30 hover:bg-white/50"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
