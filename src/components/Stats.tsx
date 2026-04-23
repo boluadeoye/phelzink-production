@@ -7,13 +7,13 @@ const Counter = ({ value, suffix }: { value: number; suffix: string }) => {
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const motionValue = useMotionValue(0);
   const springValue = useSpring(motionValue, { duration: 2500, bounce: 0 });
-  const [display, setDisplay] = useState("0");
+  const[display, setDisplay] = useState("0");
 
   useEffect(() => {
     if (isInView) {
       motionValue.set(value);
     }
-  },[isInView, value, motionValue]);
+  }, [isInView, value, motionValue]);
 
   useMotionValueEvent(springValue, "change", (latest) => {
     setDisplay(Math.floor(latest).toString());
@@ -32,7 +32,7 @@ const Stats = () => {
 
   return (
     <section className="py-16 bg-[#F8F9FA] border-b border-ink/5">
-      {/* STRICT BOXED CONTAINER */}
+      {/* STRICT BOXED CONTAINER - Matches About section exactly */}
       <div className="max-w-[1200px] mx-auto px-6 md:px-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat, index) => (
@@ -44,11 +44,9 @@ const Stats = () => {
               transition={{ delay: index * 0.1 }}
               className="text-center flex flex-col items-center justify-center"
             >
-              {/* 900 Weight Black Typography */}
               <p className="text-[40px] md:text-[48px] font-black text-ink mb-1 tracking-tighter font-sans leading-none">
                 <Counter value={stat.value} suffix={stat.suffix} />
               </p>
-              {/* Title Case, Small, Gray Labels */}
               <p className="text-[12px] md:text-[13px] font-medium text-ink/50 font-sans">
                 {stat.label}
               </p>
