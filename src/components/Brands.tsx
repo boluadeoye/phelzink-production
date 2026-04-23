@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 const brandLogos = [
   "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776750098/blog_assets/dxujejs6yya0ekeqvnam.png",
@@ -12,27 +13,41 @@ const brandLogos = [
 ];
 
 const Brands = () => {
+  // Duplicate logos for seamless loop
+  const duplicatedLogos = [...brandLogos, ...brandLogos];
+
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-center text-lg font-bold text-ink/80 mb-16 font-sans">
+    <section className="py-20 bg-white overflow-hidden border-b border-ink/5">
+      <div className="max-w-7xl mx-auto px-6 mb-12">
+        <h2 className="text-center text-sm font-bold text-ink/40 uppercase tracking-[0.3em] font-sans">
           Some of the brands we have worked with
         </h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap justify-center items-center gap-12 md:gap-20">
-          {brandLogos.map((logo, i) => (
+      </div>
+      
+      <div className="relative flex">
+        <motion.div 
+          className="flex gap-16 md:gap-24 items-center whitespace-nowrap"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ 
+            duration: 25, 
+            repeat: Infinity, 
+            ease: "linear" 
+          }}
+        >
+          {duplicatedLogos.map((logo, i) => (
             <div 
               key={i} 
-              className="relative w-32 h-16 transition-transform duration-300 hover:scale-110"
+              className="relative w-32 h-16 flex-shrink-0 transition-transform duration-300 hover:scale-110"
             >
               <Image 
                 src={logo} 
-                alt="Partner Brand Logo" 
+                alt="Partner Brand" 
                 fill 
                 className="object-contain"
               />
             </div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
