@@ -17,15 +17,15 @@ const printItems = [
 const PrintGrid = () => {
   return (
     <section className="py-24 bg-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-ink mb-8 leading-tight">
+      {/* STRICT BOXED CONTAINER: 1140px */}
+      <div className="max-w-[1140px] mx-auto px-6 md:px-12">
+        
+        <div className="text-center mb-20">
+          <h2 className="text-[42px] md:text-[56px] font-black text-ink mb-6 font-sans tracking-tighter leading-[0.9]">
             What we can print <br /> for you
           </h2>
-          <p className="text-ink/60 max-w-2xl mx-auto text-lg leading-relaxed">
-            From business cards and brochures to signage and promotional products, 
-            we offer a wide range of printing services that can be customized to 
-            meet the unique needs of our clients.
+          <p className="text-ink/60 max-w-2xl mx-auto text-lg font-sans font-medium">
+            From business cards and brochures to signage and promotional products.
           </p>
         </div>
 
@@ -37,17 +37,23 @@ const PrintGrid = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="flex flex-col items-center group"
+              className="flex flex-col items-center group cursor-pointer"
             >
-              <div className="relative w-full aspect-square overflow-hidden bg-[#F3F4F6] mb-4">
+              {/* 
+                PRECISION LOGIC: 
+                1. No 'rounded' classes (Flat Edge).
+                2. 'grayscale' by default.
+                3. 'grayscale-0' on hover.
+              */}
+              <div className="relative w-full aspect-square overflow-hidden bg-[#F3F4F6] mb-6">
                 <Image 
                   src={item.image}
                   alt={item.name}
                   fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100"
                 />
               </div>
-              <span className="text-sm font-medium text-ink/80 group-hover:text-emerald transition-colors">
+              <span className="text-[15px] font-bold text-ink/80 group-hover:text-emerald transition-colors font-sans uppercase tracking-wider">
                 {item.name}
               </span>
             </motion.div>
