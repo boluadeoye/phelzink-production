@@ -2,13 +2,18 @@
 import React from "react";
 import Image from "next/image";
 
-const CircularLogo = ({ className = "w-32 h-32", textColor = "fill-white" }: { className?: string, textColor?: string }) => {
+interface CircularLogoProps {
+  className?: string;
+  size?: number;
+}
+
+const CircularLogo = ({ className = "w-24 h-24", size = 100 }: CircularLogoProps) => {
   return (
     <div className={`relative ${className} flex items-center justify-center`}>
       {/* Rotating Text Layer */}
       <svg
         viewBox="0 0 100 100"
-        className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]"
+        className="absolute inset-0 w-full h-full animate-[spin_10s_linear_infinite]"
       >
         <defs>
           <path
@@ -16,20 +21,21 @@ const CircularLogo = ({ className = "w-32 h-32", textColor = "fill-white" }: { c
             d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0"
           />
         </defs>
-        <text className={`text-[8.5px] font-medium uppercase tracking-[0.22em] ${textColor}`}>
+        <text className="text-[8.5px] font-black uppercase tracking-[0.22em] fill-current">
           <textPath xlinkHref="#circlePath" startOffset="0%">
             Phelzink Productions • Phelzink Productions •
           </textPath>
         </text>
       </svg>
 
-      {/* Center Icon - Transparent Asset */}
-      <div className="relative w-[52%] h-[52%]">
+      {/* Center Logo Mark */}
+      <div className="relative w-[55%] h-[55%]">
         <Image
-          src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688534/blog_assets/fkckb41bhbezjlcpjhnl.png"
-          alt="P"
+          src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776962525/blog_assets/tzasw1vrukgoz1proi8j.png"
+          alt="Phelzink Mark"
           fill
           className="object-contain"
+          priority
         />
       </div>
     </div>
