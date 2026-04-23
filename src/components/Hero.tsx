@@ -31,8 +31,9 @@ const Hero = () => {
   }, [nextImage]);
 
   return (
-    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[550px] lg:h-[700px]">
+    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[550px] lg:h-[750px]">
       
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -40,41 +41,41 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
             className="absolute inset-0"
           >
             <Image 
               src={images[currentIndex]}
               alt="Phelzink Background"
               fill
-              className="object-cover"
+              className="object-cover brightness-[0.7]"
               priority
             />
           </motion.div>
         </AnimatePresence>
-        {/* Mild Dark Foreground for Text Legibility */}
-        <div className="absolute inset-0 bg-black/60 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-[1]" />
       </div>
 
-      {/* Manual Navigation Arrows (Figma Exact) */}
+      {/* Navigation Arrows - Pushed to edges to prevent text blocking */}
       <button 
         onClick={prevImage}
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20"
+        className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/40 transition-all z-30"
       >
         <ChevronLeft size={20} />
       </button>
       <button 
         onClick={nextImage}
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20"
+        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/40 transition-all z-30"
       >
         <ChevronRight size={20} />
       </button>
 
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center text-white mt-10">
+      {/* Content Container - px-16 ensures text never hits arrows */}
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-12 md:px-16 text-center text-white mt-8">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[32px] md:text-[52px] lg:text-[64px] font-black tracking-tighter mb-6 font-sans leading-[1.0]"
+          className="text-[34px] md:text-[56px] lg:text-[68px] font-black tracking-[-0.04em] mb-6 font-sans leading-[1.05]"
         >
           Transform Your Brand with <br className="hidden md:block" />
           Creative Design & Print Solutions
@@ -84,24 +85,23 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-[14px] md:text-[17px] text-white/80 font-sans max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-[14px] md:text-[18px] text-white/80 font-sans max-w-2xl mx-auto mb-10 leading-relaxed font-medium"
         >
           We bring your vision to life through exceptional branding, 
           innovative design, and high-quality printing services.
         </motion.p>
 
-        {/* Sleek, Smaller Buttons */}
         <div className="flex flex-col w-full md:flex-row md:w-auto items-center justify-center gap-4">
           <Link 
             href="#contact"
-            className="w-full md:w-auto h-12 px-8 bg-white text-ink rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all text-[14px] font-sans"
+            className="w-full md:w-auto h-12 px-10 bg-white text-ink rounded-lg font-black flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all text-[14px] font-sans uppercase tracking-wider"
           >
             Get Started
-            <ArrowRight size={16} />
+            <ArrowRight size={16} strokeWidth={3} />
           </Link>
           <Link 
             href="#portfolio"
-            className="w-full md:w-auto h-12 px-8 bg-transparent border border-white text-white rounded-lg font-bold flex items-center justify-center hover:bg-white hover:text-ink transition-all text-[14px] font-sans"
+            className="w-full md:w-auto h-12 px-10 bg-transparent border-2 border-white text-white rounded-lg font-black flex items-center justify-center hover:bg-white hover:text-ink transition-all text-[14px] font-sans uppercase tracking-wider"
           >
             View Our Work
           </Link>
@@ -109,12 +109,12 @@ const Hero = () => {
       </div>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
         {images.map((_, i) => (
           <div 
             key={i} 
             className={`transition-all duration-500 rounded-full ${
-              currentIndex === i ? "w-8 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/30"
+              currentIndex === i ? "w-10 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/20"
             }`} 
           />
         ))}
