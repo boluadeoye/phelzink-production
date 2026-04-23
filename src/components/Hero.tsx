@@ -31,9 +31,8 @@ const Hero = () => {
   }, [nextImage]);
 
   return (
-    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[600px] lg:h-[750px] mt-[70px]">
+    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[550px] lg:h-[700px]">
       
-      {/* Background Image Slider */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -41,42 +40,41 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
+            transition={{ duration: 1 }}
             className="absolute inset-0"
           >
             <Image 
               src={images[currentIndex]}
-              alt={`Phelzink Production Slide ${currentIndex + 1}`}
+              alt="Phelzink Background"
               fill
               className="object-cover"
-              priority={currentIndex === 0}
+              priority
             />
           </motion.div>
         </AnimatePresence>
-        {/* Precision Gradient Overlay */}
-        <div className="absolute inset-0 bg-black/50 z-[1]" />
+        {/* Mild Dark Foreground for Text Legibility */}
+        <div className="absolute inset-0 bg-black/60 z-[1]" />
       </div>
 
-      {/* Desktop Slider Arrows */}
+      {/* Manual Navigation Arrows (Figma Exact) */}
       <button 
         onClick={prevImage}
-        className="hidden md:flex absolute left-4 lg:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20 shadow-lg"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20"
       >
         <ChevronLeft size={20} />
       </button>
       <button 
         onClick={nextImage}
-        className="hidden md:flex absolute right-4 lg:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20 shadow-lg"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-ink transition-all z-20"
       >
         <ChevronRight size={20} />
       </button>
 
-      {/* Content Container */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center text-white">
+      <div className="relative z-10 w-full max-w-5xl mx-auto px-6 text-center text-white mt-10">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[36px] md:text-[56px] lg:text-[72px] font-black tracking-tighter mb-6 font-sans leading-[0.95]"
+          className="text-[32px] md:text-[52px] lg:text-[64px] font-black tracking-tighter mb-6 font-sans leading-[1.0]"
         >
           Transform Your Brand with <br className="hidden md:block" />
           Creative Design & Print Solutions
@@ -86,38 +84,38 @@ const Hero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-[15px] md:text-[18px] text-white/90 font-sans max-w-2xl mx-auto mb-10 leading-relaxed"
+          className="text-[14px] md:text-[17px] text-white/80 font-sans max-w-2xl mx-auto mb-10 leading-relaxed"
         >
           We bring your vision to life through exceptional branding, 
           innovative design, and high-quality printing services.
         </motion.p>
 
-        <div className="flex flex-col w-full md:flex-row md:w-auto items-center justify-center gap-5">
+        {/* Sleek, Smaller Buttons */}
+        <div className="flex flex-col w-full md:flex-row md:w-auto items-center justify-center gap-4">
           <Link 
             href="#contact"
-            className="w-full md:w-auto h-16 px-10 bg-white text-ink rounded-xl font-black flex items-center justify-center gap-2 hover:bg-emerald hover:text-white hover:scale-[1.02] active:scale-[0.98] transition-all text-[16px] font-sans shadow-xl"
+            className="w-full md:w-auto h-12 px-8 bg-white text-ink rounded-lg font-bold flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all text-[14px] font-sans"
           >
             Get Started
-            <ArrowRight size={18} strokeWidth={3} />
+            <ArrowRight size={16} />
           </Link>
           <Link 
             href="#portfolio"
-            className="w-full md:w-auto h-16 px-10 bg-transparent border-2 border-white text-white rounded-xl font-black flex items-center justify-center hover:bg-white hover:text-ink hover:scale-[1.02] active:scale-[0.98] transition-all text-[16px] font-sans"
+            className="w-full md:w-auto h-12 px-8 bg-transparent border border-white text-white rounded-lg font-bold flex items-center justify-center hover:bg-white hover:text-ink transition-all text-[14px] font-sans"
           >
             View Our Work
           </Link>
         </div>
       </div>
 
-      {/* Pagination Dots (6 Dots for 6 Images) */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
+      {/* Pagination Dots */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2.5 z-20">
         {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentIndex(i)}
+          <div 
+            key={i} 
             className={`transition-all duration-500 rounded-full ${
-              currentIndex === i ? "w-10 h-2 bg-white" : "w-2 h-2 bg-white/30 hover:bg-white/50"
-            }`}
+              currentIndex === i ? "w-8 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/30"
+            }`} 
           />
         ))}
       </div>
