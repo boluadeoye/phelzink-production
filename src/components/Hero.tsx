@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = [
+const images =[
   "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939927/blog_assets/akarw2znltgqktvb8ecd.jpg",
   "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939881/blog_assets/vvsw4gjdnh0daydfknes.jpg",
   "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939898/blog_assets/t7h9ludvpcmtg76j8ypy.jpg",
@@ -16,8 +16,14 @@ const images = [
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const nextImage = useCallback(() => setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1)), []);
-  const prevImage = () => setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+
+  const nextImage = useCallback(() => {
+    setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+  },[]);
+
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
 
   useEffect(() => {
     const timer = setInterval(nextImage, 6000);
@@ -25,48 +31,106 @@ const Hero = () => {
   }, [nextImage]);
 
   return (
-    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[500px] md:h-[600px] lg:h-[700px] mt-[70px]">
+    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[550px] lg:h-[750px] mt-[70px]">
+      
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
-          <motion.div key={currentIndex} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.8 }} className="absolute inset-0">
-            <Image src={images[currentIndex]} alt="Phelzink" fill className="object-cover" priority />
+          <motion.div
+            key={currentIndex}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.2, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            <Image 
+              src={images[currentIndex]}
+              alt="Phelzink Background"
+              fill
+              className="object-cover"
+              priority
+            />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-black/70 z-[1]" />
+        <div className="absolute inset-0 bg-black/75 z-[1]" />
       </div>
 
-      {/* Arrows: Absolute Edges */}
-      <button onClick={prevImage} className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white z-30 hover:bg-white/20 transition-all">
+      {/* Navigation Arrows - Locked to absolute edges */}
+      <button 
+        onClick={prevImage}
+        className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all z-30"
+      >
         <ChevronLeft size={20} />
       </button>
-      <button onClick={nextImage} className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white z-30 hover:bg-white/20 transition-all">
+      <button 
+        onClick={nextImage}
+        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all z-30"
+      >
         <ChevronRight size={20} />
       </button>
 
-      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-12 md:px-24 text-center text-white">
-        {/* MOBILE: 3 LINES | DESKTOP: 2 LINES */}
-        <h1 className="font-black tracking-tighter leading-[1.1] font-sans text-[clamp(30px,7vw,64px)] mb-6">
-          <span className="md:hidden">Transform Your Brand <br /> with Creative Design <br /> & Print Solutions</span>
-          <span className="hidden md:block">Transform Your Brand with <br /> Creative Design & Print Solutions</span>
-        </h1>
+      {/* Content Container - px-12/px-24 creates the No-Fly Zone for arrows */}
+      <div className="relative z-10 w-full max-w-[1280px] mx-auto px-12 md:px-24 text-center text-white mt-4">
+        
+        {/* MOBILE HEADING: FORCED 3 LINES */}
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="md:hidden flex flex-col items-center text-[clamp(24px,7vw,32px)] font-black tracking-[-0.02em] mb-6 font-sans leading-[1.1]"
+        >
+          <span className="whitespace-nowrap">Transform Your Brand</span>
+          <span className="whitespace-nowrap">with Creative Design</span>
+          <span className="whitespace-nowrap">& Print Solutions</span>
+        </motion.h1>
 
-        <p className="text-[14px] md:text-lg text-white/80 font-medium max-w-2xl mx-auto mb-10 leading-relaxed">
-          We bring your vision to life through exceptional branding, innovative design, and high-quality printing services.
-        </p>
+        {/* DESKTOP HEADING: FORCED 2 LINES */}
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="hidden md:flex flex-col items-center text-[clamp(40px,4.5vw,72px)] font-black tracking-[-0.04em] mb-6 font-sans leading-[1.05]"
+        >
+          <span className="whitespace-nowrap">Transform Your Brand with</span>
+          <span className="whitespace-nowrap">Creative Design & Print Solutions</span>
+        </motion.h1>
 
-        <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-          <Link href="#contact" className="w-full md:w-auto h-12 px-8 bg-white text-ink rounded-lg font-black flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all text-sm uppercase tracking-widest">
-            Get Started <ArrowRight size={16} strokeWidth={3} />
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.2 }}
+          className="text-[14px] md:text-[18px] text-white/80 font-sans max-w-2xl mx-auto mb-10 leading-relaxed font-medium"
+        >
+          We bring your vision to life through exceptional branding, 
+          innovative design, and high-quality printing services.
+        </motion.p>
+
+        {/* Sleek Buttons */}
+        <div className="flex flex-col w-full md:flex-row md:w-auto items-center justify-center gap-4">
+          <Link 
+            href="#contact"
+            className="w-full md:w-auto h-12 px-8 bg-white text-ink rounded-lg font-black flex items-center justify-center gap-2 hover:bg-emerald hover:text-white transition-all text-[14px] font-sans uppercase tracking-wider"
+          >
+            Get Started
+            <ArrowRight size={16} strokeWidth={3} />
           </Link>
-          <Link href="#portfolio" className="w-full md:w-auto h-12 px-8 bg-transparent border-2 border-white text-white rounded-lg font-black flex items-center justify-center hover:bg-white hover:text-ink transition-all text-sm uppercase tracking-widest">
+          <Link 
+            href="#portfolio"
+            className="w-full md:w-auto h-12 px-8 bg-transparent border-2 border-white text-white rounded-lg font-black flex items-center justify-center hover:bg-white hover:text-ink transition-all text-[14px] font-sans uppercase tracking-wider"
+          >
             View Our Work
           </Link>
         </div>
       </div>
 
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-2 z-20">
+      {/* Pagination Dots */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
         {images.map((_, i) => (
-          <div key={i} className={`transition-all duration-500 rounded-full ${currentIndex === i ? "w-10 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/30"}`} />
+          <div 
+            key={i} 
+            className={`transition-all duration-500 rounded-full ${
+              currentIndex === i ? "w-10 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/30"
+            }`} 
+          />
         ))}
       </div>
     </section>
