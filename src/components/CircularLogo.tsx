@@ -11,30 +11,25 @@ const CircularLogo = ({ className = "w-32 h-32" }: { className?: string }) => {
         className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]"
       >
         <defs>
-          {/* Top Arc Path */}
-          <path id="topArc" d="M 15,50 A 35,35 0 1,1 85,50" />
-          {/* Bottom Arc Path */}
-          <path id="bottomArc" d="M 15,50 A 35,35 0 1,0 85,50" />
+          {/* The Original Perfect Circle Path */}
+          <path
+            id="circlePath"
+            d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+          />
         </defs>
-        
-        <text className="text-[8.5px] font-medium uppercase tracking-[0.25em] fill-ink font-sans">
-          <textPath xlinkHref="#topArc" startOffset="50%" textAnchor="middle">
-            Phelzink Productions
-          </textPath>
-        </text>
-        
-        <text className="text-[8.5px] font-medium uppercase tracking-[0.25em] fill-ink font-sans">
-          <textPath xlinkHref="#bottomArc" startOffset="50%" textAnchor="middle">
-            Phelzink Productions
+        {/* FIXED: Reduced tracking to 0.14em to prevent the tail from overlapping the head */}
+        <text className="text-[8.5px] font-bold uppercase tracking-[0.14em] fill-ink font-sans">
+          <textPath xlinkHref="#circlePath" startOffset="0%">
+            Phelzink Productions • Phelzink Productions •
           </textPath>
         </text>
       </svg>
 
       {/* Center Icon */}
-      <div className="relative w-[50%] h-[50%]">
+      <div className="relative w-[45%] h-[45%]">
         <Image
           src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688534/blog_assets/fkckb41bhbezjlcpjhnl.png"
-          alt="P"
+          alt="Phelzink Logo"
           fill
           className="object-contain"
         />
