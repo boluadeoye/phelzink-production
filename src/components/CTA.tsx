@@ -5,31 +5,45 @@ import { ArrowRight } from "lucide-react";
 
 const CTA = () => {
   return (
-    <section className="relative py-32 overflow-hidden">
-      <div 
-        className="absolute inset-0 z-0"
+    <section className="relative w-full py-24 md:py-40 overflow-hidden flex items-center justify-center">
+      {/* BACKGROUND LAYER: Industrial Texture */}
+      <div
+        className="absolute inset-0 z-0 bg-fixed"
         style={{
           backgroundImage: `url('https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688504/blog_assets/gjf6nnbcko5jjauryamd.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center'
         }}
       >
-        <div className="absolute inset-0 bg-ink/85 backdrop-blur-[2px]" />
+        {/* OVERLAY: High-Contrast Depth */}
+        <div className="absolute inset-0 bg-black/65" />
       </div>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 flex flex-col items-center text-center text-white">
-        <h2 className="text-4xl md:text-6xl font-black mb-6 font-sans tracking-tighter leading-tight">
-          Ready to Elevate <br /> Your Brand?
+      {/* CONTENT LAYER: Precision Alignment */}
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 flex flex-col items-center text-center text-white">
+        
+        {/* HEADING: Montserrat 800 (ExtraBold) */}
+        <h2 className="text-[36px] md:text-[52px] lg:text-[64px] font-extrabold tracking-tighter leading-[1.1] mb-6">
+          Ready to Elevate <br className="hidden md:block" /> Your Brand?
         </h2>
-        <p className="text-lg md:text-xl text-white/70 mb-12 font-sans max-w-2xl mx-auto leading-relaxed">
-          Let's collaborate to create something extraordinary. <br className="hidden md:block" /> Get in touch with us today.
+
+        {/* SUBTEXT: Montserrat 400 (Regular) - Forced 2-line geometry */}
+        <p className="text-[16px] md:text-[18px] lg:text-[20px] text-white/90 max-w-[620px] mx-auto mb-12 leading-relaxed">
+          Let's collaborate to create something extraordinary. <br className="hidden md:block" /> 
+          Get in touch with us today.
         </p>
-        <Link 
+
+        {/* THE INDUSTRIAL BUTTON: Rounded-Rectangle Geometry */}
+        <Link
           href="#contact"
-          className="bg-white text-ink px-10 py-5 rounded-full font-black text-lg flex items-center gap-3 hover:bg-emerald hover:text-white transition-all shadow-2xl active:scale-[0.95]"
+          className="group h-[64px] px-10 bg-white text-[#0C0608] rounded-[16px] font-bold text-[18px] flex items-center justify-center gap-3 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-2xl"
         >
           Contact Us Now
-          <ArrowRight size={22} strokeWidth={3} />
+          <ArrowRight 
+            size={22} 
+            strokeWidth={2.5} 
+            className="group-hover:translate-x-1.5 transition-transform duration-300" 
+          />
         </Link>
       </div>
     </section>
