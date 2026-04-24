@@ -2,21 +2,21 @@
 import React from "react";
 import Image from "next/image";
 
-const printItems =[
-  { name: "Business card", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748711/blog_assets/puvwepzygs9xuuicpbt9.png" },
-  { name: "Tote Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748719/blog_assets/mafn1xjlsujj3ophcjrq.png" },
-  { name: "Rollup Banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748706/blog_assets/dqs8wgtvgpchmnvvzdi0.png" },
-  { name: "Paper Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748730/blog_assets/ivfzewrizpcuhudmxies.png" },
-  { name: "Notepad", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748735/blog_assets/dkfhzh1ovfcnaatncss6.png" },
-  { name: "Car branding", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748738/blog_assets/fszsrhdaqrjos0kwsvmx.png" },
-  { name: "Sticker", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748698/blog_assets/thsmwsrgoumnvbbwhyu9.png" },
-  { name: "Fly banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776748701/blog_assets/ewcjasl7tsn52k66rz7k.png" },
+const printItems = [
+  { name: "Business card", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966683/blog_assets/gmvamzgx64nzhyncubut.jpg" },
+  { name: "Tote Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966611/blog_assets/ztoq9ulwhs5aediqpaep.jpg" },
+  { name: "Rollup Banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776964692/blog_assets/rrnnxvdirxnwgx38pleh.png" },
+  { name: "Paper Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966619/blog_assets/uz3v9tbajsmdmpsvwq2w.jpg" },
+  { name: "Notepad", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966644/blog_assets/zqfmntpvxfbjxeufdtbf.jpg" },
+  { name: "Car branding", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776962932/blog_assets/jrxejsjpcfykcjtlwa66.png" },
+  { name: "Sticker", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776963022/blog_assets/f7jlnijocdlllilmojvm.png" },
+  { name: "Fly banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776964635/blog_assets/odvq6w74giuziq4zxs3z.png" },
 ];
 
 const PrintGrid = () => {
   return (
     <section className="py-24 bg-[#F8F9FA]">
-      {/* STRICT BOXED CONTAINER */}
+      {/* STRICT BOXED CONTAINER: 1280px */}
       <div className="max-w-[1280px] mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-black text-ink mb-6 leading-[1.0] tracking-tighter font-sans">
