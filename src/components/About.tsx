@@ -6,49 +6,48 @@ import { motion } from "framer-motion";
 
 const About = () => {
   return (
-    <section id="about" className="relative py-20 lg:py-32 bg-white overflow-hidden">
+    <section id="about" className="relative w-full overflow-hidden bg-white pt-[140px] pb-20 lg:pt-[180px] lg:pb-32">
       
-      {/* 
-        Z-0: THE HALO (ABSOLUTE BACKGROUND)
-        Decoupled from the grid to prevent layout trapping. 
-        Centered on mobile, shifted to the 75% mark (right hemisphere) on desktop.
-      */}
-      <div className="absolute top-[30%] lg:top-1/2 left-1/2 lg:left-[75%] -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] lg:w-[1100px] lg:h-[1100px] z-0 pointer-events-none">
-        <Image
-          src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776945729/blog_assets/t364epis7o6rntpm59ir.png"
-          alt="Background Halo"
-          fill
-          className="object-contain opacity-90"
-          priority
-        />
-      </div>
-
       {/* STRICT BOXED CONTAINER: 1280px */}
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12">
         
         {/*
           THE ARCHITECTURE:
-          Mobile = Flex Column (Order: Heading -> Image -> Story)
-          Desktop = 12-Column Grid (Auto-rows prevent vertical collision)
+          Mobile = 1-Column Grid (Order: Heading -> Visual Unit -> Story)
+          Desktop = 12-Column Grid (Left: Cols 1-6 | Right: Cols 7-12)
         */}
-        <div className="flex flex-col lg:grid lg:grid-cols-12 gap-y-10 lg:gap-y-0 lg:gap-x-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-0 lg:gap-x-8">
 
           {/* 1. HEADER (Mobile: Top | Desktop: Top-Left, Row 1) */}
-          <div className="order-1 lg:col-span-5 lg:col-start-1 lg:row-start-1 lg:self-end lg:pb-8">
-            <h2 className="font-black leading-[0.85] tracking-[-0.04em] text-[clamp(2.75rem,6vw,4.5rem)]">
+          <div className="order-1 lg:order-none lg:col-span-6 lg:col-start-1 lg:row-start-1 lg:self-end lg:pb-8 relative z-20">
+            <h2 className="font-sans font-black leading-[0.85] tracking-[-0.04em] text-[36px] md:text-[48px] lg:text-[72px]">
               <span className="text-[#111111] block">About</span>
               <span className="text-[#888888] block">Phelzink <br className="hidden lg:block" /> Production</span>
             </h2>
           </div>
 
-          {/* 2. IMAGE (Mobile: Middle | Desktop: Right Side, Spans Rows 1 & 2) */}
-          <div className="order-2 lg:col-span-7 lg:col-start-6 lg:row-start-1 lg:row-span-2 relative w-full flex justify-center items-center">
+          {/* 2. VISUAL ANCHOR UNIT (Mobile: Middle | Desktop: Right Side, Spans Rows 1 & 2) */}
+          {/* Negative margins on mobile pull the text tight against the character */}
+          <div className="order-2 lg:order-none lg:col-span-6 lg:col-start-7 lg:row-start-1 lg:row-span-2 relative w-full h-[400px] md:h-[500px] lg:h-[700px] mt-[-20px] mb-[-20px] lg:mt-0 lg:mb-0 z-10 pointer-events-none flex items-center justify-center">
+            
+            {/* Layer 1: The Halo (Fused to the container, shifted left on desktop to bleed) */}
+            <div className="absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 lg:-translate-x-[65%] w-[130%] lg:w-[150%] aspect-square z-0">
+              <Image
+                src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776945729/blog_assets/t364epis7o6rntpm59ir.png"
+                alt="Background Halo"
+                fill
+                className="object-contain opacity-90"
+                priority
+              />
+            </div>
+
+            {/* Layer 2: The 3D Character (Locked inside the container) */}
             <motion.div
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-[400px] lg:max-w-[600px] h-[350px] md:h-[450px] lg:h-[650px] z-20"
+              className="absolute inset-0 z-10"
             >
               <Image
                 src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776943912/blog_assets/q5cvvhba4bavsjqyrxss.png"
@@ -61,9 +60,9 @@ const About = () => {
           </div>
 
           {/* 3. STORY CONTENT (Mobile: Bottom | Desktop: Bottom-Left, Row 2) */}
-          <div className="order-3 lg:col-span-5 lg:col-start-1 lg:row-start-2 lg:self-start lg:pt-4">
-            <h3 className="text-[24px] font-black text-[#111111] mb-6 tracking-tight">Our story</h3>
-            <div className="space-y-6 text-[16px] text-[#111111]/80 leading-[1.8] font-medium">
+          <div className="order-3 lg:order-none lg:col-span-5 lg:col-start-1 lg:row-start-2 lg:self-start lg:pt-12 relative z-20">
+            <h3 className="font-sans text-[24px] font-black text-[#111111] mb-6 tracking-tight">Our story</h3>
+            <div className="font-sans space-y-6 text-[16px] text-[#111111]/80 leading-[1.8] font-medium">
               <p>
                 Founded in 2021, Phelzink Production began with a simple mission: to help businesses create compelling brand identities through exceptional design and high-quality printing.
               </p>
