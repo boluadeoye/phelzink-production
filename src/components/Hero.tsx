@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 
-const images = [
+const images =[
   "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939927/blog_assets/akarw2znltgqktvb8ecd.jpg",
   "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939881/blog_assets/vvsw4gjdnh0daydfknes.jpg",
   "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776939898/blog_assets/t7h9ludvpcmtg76j8ypy.jpg",
@@ -19,7 +19,7 @@ const Hero = () => {
 
   const nextImage = useCallback(() => {
     setCurrentIndex((prev) => (prev === images.length - 1 ? 0 : prev + 1));
-  }, []);
+  },[]);
 
   const prevImage = () => {
     setCurrentIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
@@ -31,9 +31,8 @@ const Hero = () => {
   }, [nextImage]);
 
   return (
-    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[550px] lg:h-[750px]">
+    <section className="relative w-full flex items-center justify-center overflow-hidden bg-ink h-[550px] lg:h-[750px] mt-[70px]">
       
-      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -48,34 +47,34 @@ const Hero = () => {
               src={images[currentIndex]}
               alt="Phelzink Background"
               fill
-              className="object-cover brightness-[0.7]"
+              className="object-cover"
               priority
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60 z-[1]" />
+        {/* FIXED: Increased overlay opacity to bg-black/75 to push text out more */}
+        <div className="absolute inset-0 bg-black/75 z-[1]" />
       </div>
 
-      {/* Navigation Arrows - Pushed to edges to prevent text blocking */}
       <button 
         onClick={prevImage}
-        className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/40 transition-all z-30"
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all z-30"
       >
         <ChevronLeft size={20} />
       </button>
       <button 
         onClick={nextImage}
-        className="absolute right-2 md:right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/40 transition-all z-30"
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all z-30"
       >
         <ChevronRight size={20} />
       </button>
 
-      {/* Content Container - px-16 ensures text never hits arrows */}
-      <div className="relative z-10 w-full max-w-5xl mx-auto px-12 md:px-16 text-center text-white mt-8">
+      {/* FIXED: Expanded max-w to 1200px to ensure text fits on exactly 2 lines */}
+      <div className="relative z-10 w-full max-w-[1200px] mx-auto px-12 md:px-20 text-center text-white mt-8">
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-[34px] md:text-[56px] lg:text-[68px] font-black tracking-[-0.04em] mb-6 font-sans leading-[1.05]"
+          className="text-[32px] md:text-[52px] lg:text-[64px] font-black tracking-[-0.02em] mb-6 font-sans leading-[1.1]"
         >
           Transform Your Brand with <br className="hidden md:block" />
           Creative Design & Print Solutions
@@ -108,13 +107,12 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Pagination Dots */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-3 z-20">
         {images.map((_, i) => (
           <div 
             key={i} 
             className={`transition-all duration-500 rounded-full ${
-              currentIndex === i ? "w-10 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/20"
+              currentIndex === i ? "w-10 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/30"
             }`} 
           />
         ))}
