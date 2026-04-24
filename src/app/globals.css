@@ -1,34 +1,37 @@
+/* 1. STANDARD FONT IMPORT (Bypasses broken Next.js optimization) */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  /* Font Mapping */
-  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
-
-  /* Design Tokens (Preserved) */
+  /* 2. DESIGN TOKENS */
   --color-ink: #0C0608;
   --color-emerald: #25D366;
   --color-surface: #F3F4F6;
   --color-background: #FFFFFF;
+  --font-sans: 'Montserrat', sans-serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
+  
   body {
-    font-family: var(--font-sans);
+    font-family: 'Montserrat', sans-serif;
     background-color: #FFFFFF;
     color: #0C0608;
-    /* THE SMOOTHING ENGINE */
+    
+    /* 3. THE RENDERING ENGINE (Kills the "dirty" edges) */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
   }
-  /* THE MONOLITH HEADER LOCK */
-  h1, h2, h3 {
-    font-family: var(--font-sans);
-    font-weight: 900;
-    letter-spacing: -0.04em; /* The Crush */
-    line-height: 0.95;      /* The Block */
+
+  /* 4. THE MONOLITH HEADER LOCK (Figma Fidelity) */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 900 !important;
+    letter-spacing: -0.04em !important; /* The Crush */
+    line-height: 0.95 !important;      /* The Block */
   }
 }
