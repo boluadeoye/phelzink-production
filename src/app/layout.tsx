@@ -17,6 +17,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* DIRECT FONT INJECTION */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@900&display=swap" rel="stylesheet" />
+        
+        {/* NUCLEAR RENDERING ENGINE */}
+        <style dangerouslySetInnerHTML={{ __html: `
+          h1, h2, h3 { 
+            font-family: 'Montserrat', sans-serif !important; 
+            font-weight: 900 !important;
+            -webkit-font-smoothing: antialiased !important;
+            -moz-osx-font-smoothing: grayscale !important;
+            text-rendering: optimizeLegibility !important;
+          }
+        `}} />
+      </head>
       <body className="antialiased">
         {children}
       </body>
