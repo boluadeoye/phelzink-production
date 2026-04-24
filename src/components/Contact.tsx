@@ -4,7 +4,6 @@ import React, { useState } from "react";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
-  const googleMapsUrl = "https://www.google.com/maps/search/?api=1&query=24+Oguntolu+street+Shomolu+Lagos";
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,20 +38,20 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="relative w-full bg-white overflow-hidden pt-20 pb-24 lg:pt-32 lg:pb-40" style={{ fontFamily: '"Montserrat", sans-serif' }}>
+    <section id="contact" className="relative w-full bg-white overflow-hidden pt-20 pb-24 md:pt-32 md:pb-40 font-sans">
       <div className="mx-auto max-w-[1280px] px-6 md:px-12">
         
         {/* ══════════════════════════════════════════════════════════════
-            THE EDITORIAL COMPOSITOR GRID (12-Column Strict Split)
+            THE EDITORIAL COMPOSITOR GRID (Locked at MD Breakpoint)
         ══════════════════════════════════════════════════════════════ */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-16 lg:gap-x-16 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-10 lg:gap-x-16 items-start">
           
           {/* ── LEFT COLUMN: CONTACT INFO & MAP (Cols 1-5) ── */}
-          <div className="lg:col-span-5 flex flex-col w-full">
+          <div className="md:col-span-5 flex flex-col w-full">
             
             {/* THE MONOLITH HEADER */}
-            <h2 className="text-[40px] lg:text-[48px] text-[#111111] tracking-[-0.03em] leading-[1.05] mb-10 lg:mb-12" style={{ fontWeight: 900 }}>
-              Contact <br className="block lg:hidden" /> Information
+            <h2 className="text-[40px] md:text-[44px] lg:text-[48px] text-[#111111] tracking-[-0.03em] leading-[1.05] mb-10 lg:mb-12 font-black">
+              Contact <br className="block md:hidden" /> Information
             </h2>
             
             {/* INFO LIST */}
@@ -64,7 +63,7 @@ export default function Contact() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                 </div>
                 <div className="pt-1.5">
-                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none" style={{ fontWeight: 900 }}>Phone</p>
+                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none font-black">Phone</p>
                   <a href="https://wa.me/2347072580692" target="_blank" rel="noopener noreferrer" className="block text-[#444444] text-[15px] font-medium tracking-tight hover:text-[#25D366] transition-colors">+234 707 258 0692</a>
                   <a href="tel:+2348125821771" className="block text-[#444444] text-[15px] font-medium tracking-tight hover:text-[#111111] transition-colors">+234 812 582 1771</a>
                 </div>
@@ -76,7 +75,7 @@ export default function Contact() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                 </div>
                 <div className="pt-1.5">
-                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none" style={{ fontWeight: 900 }}>Email</p>
+                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none font-black">Email</p>
                   <a href="mailto:Phelzink@gmail.com" className="block text-[#444444] text-[15px] font-medium tracking-tight hover:text-[#111111] transition-colors">Phelzink@gmail.com</a>
                 </div>
               </div>
@@ -87,8 +86,8 @@ export default function Contact() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
                 </div>
                 <div className="pt-1.5">
-                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none" style={{ fontWeight: 900 }}>Location</p>
-                  <p className="text-[#444444] text-[15px] font-medium leading-relaxed tracking-tight">24, Oguntolu street<br className="hidden lg:block" /> Shomolu, Lagos</p>
+                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none font-black">Location</p>
+                  <p className="text-[#444444] text-[15px] font-medium leading-relaxed tracking-tight">24, Oguntolu street<br className="hidden md:block" /> Shomolu, Lagos</p>
                 </div>
               </div>
 
@@ -98,7 +97,7 @@ export default function Contact() {
                   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                 </div>
                 <div className="pt-1.5">
-                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none" style={{ fontWeight: 900 }}>Business Hours</p>
+                  <p className="text-[#111111] text-[16px] mb-1.5 leading-none font-black">Business Hours</p>
                   <p className="text-[#444444] text-[15px] font-medium tracking-tight">Monday - Friday: 9:00 AM - 6:00 PM</p>
                   <p className="text-[#444444] text-[15px] font-medium tracking-tight">Saturday: 10:00 AM - 4:00 PM</p>
                   <p className="text-[#444444] text-[15px] font-medium tracking-tight">Sunday: Closed</p>
@@ -107,8 +106,8 @@ export default function Contact() {
 
             </div>
 
-            {/* THE MAP: Precision Geometry */}
-            <div className="relative w-full h-[280px] lg:h-[320px] rounded-2xl overflow-hidden bg-[#F3F4F6] border border-gray-200 shadow-sm">
+            {/* THE MAP: Clean Iframe, No Duplication */}
+            <div className="relative w-full h-[280px] md:h-[320px] rounded-2xl overflow-hidden bg-[#F3F4F6] border border-gray-200 shadow-sm">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.3791153!3d6.5276316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d24c04d3e75%3A0x7347f1a6be13e004!2sOguntolu%20St%2C%20Somolu%20102216%2C%20Lagos!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng" 
                 className="absolute inset-0 w-full h-full z-10" 
@@ -117,56 +116,42 @@ export default function Contact() {
                 loading="lazy" 
                 referrerPolicy="no-referrer-when-downgrade"
               />
-              
-              {/* Open in Maps Pill (Responsive Positioning matching Figma exactly) */}
-              <div className="absolute bottom-4 left-4 lg:bottom-auto lg:top-4 lg:left-4 z-20">
-                <a 
-                  href={googleMapsUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="bg-white px-4 py-2.5 rounded-lg text-[13px] text-[#111111] flex items-center gap-2 shadow-md hover:scale-105 transition-transform duration-300"
-                  style={{ fontWeight: 800 }}
-                >
-                  Open in Maps 
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
-              </div>
             </div>
           </div>
 
           {/* ── RIGHT COLUMN: THE FORM (Cols 6-12) ── */}
-          <div className="lg:col-span-7 flex flex-col w-full">
+          <div className="md:col-span-7 flex flex-col w-full">
             
             {/* THE MONOLITH HEADER */}
-            <h2 className="text-[40px] lg:text-[48px] text-[#111111] tracking-[-0.03em] leading-[1.05] mb-10 lg:mb-12" style={{ fontWeight: 900 }}>
-              Send Us a <br className="block lg:hidden" /> Message
+            <h2 className="text-[40px] md:text-[44px] lg:text-[48px] text-[#111111] tracking-[-0.03em] leading-[1.05] mb-10 lg:mb-12 font-black">
+              Send Us a <br className="block md:hidden" /> Message
             </h2>
             
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               
               {/* Name */}
               <div className="flex flex-col gap-3">
-                <label htmlFor="name" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1" style={{ fontWeight: 800 }}>Your Name *</label>
-                <input required type="text" id="name" name="name" placeholder="Enter your name" className="w-full h-[60px] px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all placeholder:text-[#888888]" />
+                <label htmlFor="name" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1 font-extrabold">Your Name *</label>
+                <input required type="text" id="name" name="name" placeholder="Enter your name" className="w-full h-[60px] px-5 lg:px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all placeholder:text-[#888888]" />
               </div>
               
               {/* Email */}
               <div className="flex flex-col gap-3">
-                <label htmlFor="email" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1" style={{ fontWeight: 800 }}>Email Address *</label>
-                <input required type="email" id="email" name="email" placeholder="Enter your email" className="w-full h-[60px] px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all placeholder:text-[#888888]" />
+                <label htmlFor="email" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1 font-extrabold">Email Address *</label>
+                <input required type="email" id="email" name="email" placeholder="Enter your email" className="w-full h-[60px] px-5 lg:px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all placeholder:text-[#888888]" />
               </div>
 
               {/* Phone */}
               <div className="flex flex-col gap-3">
-                <label htmlFor="phone" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1" style={{ fontWeight: 800 }}>Phone Number</label>
-                <input type="tel" id="phone" name="phone" placeholder="Enter your number" className="w-full h-[60px] px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all placeholder:text-[#888888]" />
+                <label htmlFor="phone" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1 font-extrabold">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="Enter your number" className="w-full h-[60px] px-5 lg:px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all placeholder:text-[#888888]" />
               </div>
 
               {/* Service Dropdown */}
               <div className="flex flex-col gap-3">
-                <label htmlFor="service" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1" style={{ fontWeight: 800 }}>Service Interested In *</label>
+                <label htmlFor="service" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1 font-extrabold">Service Interested In *</label>
                 <div className="relative">
-                  <select required id="service" name="service" defaultValue="" className="w-full h-[60px] px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all appearance-none cursor-pointer text-[#111111]" style={{ backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1.5rem center', backgroundSize: '1.2em' }}>
+                  <select required id="service" name="service" defaultValue="" className="w-full h-[60px] px-5 lg:px-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all appearance-none cursor-pointer text-[#111111]" style={{ backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23111111%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1.5rem center', backgroundSize: '1.2em' }}>
                     <option value="" disabled className="text-[#888888]">Select a service</option>
                     <option value="Business Card Printing">Business Card Printing</option>
                     <option value="Tote Bag Branding">Tote Bag Branding</option>
@@ -182,16 +167,15 @@ export default function Contact() {
               
               {/* Message */}
               <div className="flex flex-col gap-3">
-                <label htmlFor="message" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1" style={{ fontWeight: 800 }}>Message *</label>
-                <textarea required id="message" name="message" placeholder="Enter your message" className="w-full min-h-[160px] p-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all resize-none placeholder:text-[#888888]"></textarea>
+                <label htmlFor="message" className="text-[12px] text-[#111111] uppercase tracking-[0.15em] pl-1 font-extrabold">Message *</label>
+                <textarea required id="message" name="message" placeholder="Enter your message" className="w-full min-h-[160px] p-5 lg:p-6 rounded-xl bg-[#F3F4F6] border border-transparent focus:border-[#111111] focus:bg-white focus:ring-4 focus:ring-[#111111]/5 outline-none text-[15px] font-medium transition-all resize-none placeholder:text-[#888888]"></textarea>
               </div>
               
               {/* Submit Button */}
               <button 
                 type="submit"
                 disabled={status !== "idle"} 
-                className="w-full h-[64px] bg-[#111111] text-white rounded-xl text-[16px] flex items-center justify-center gap-3 hover:bg-[#222222] transition-all shadow-lg active:scale-[0.98] disabled:opacity-70 mt-2"
-                style={{ fontWeight: 900 }}
+                className="w-full h-[64px] bg-[#111111] text-white rounded-xl text-[16px] flex items-center justify-center gap-3 hover:bg-[#222222] transition-all shadow-lg active:scale-[0.98] disabled:opacity-70 mt-2 font-black"
               >
                 {status === "idle" && (
                   <>

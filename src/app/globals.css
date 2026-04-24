@@ -1,28 +1,15 @@
 @import "tailwindcss";
 
 @theme {
-  --color-ink: #0C0608;
-  --color-emerald: #25D366;
-  --color-surface: #F3F4F6;
-  --color-background: #ffffff;
-  --color-foreground: #0C0608;
-  
-  --font-sans: "Montserrat", sans-serif;
-
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
   body {
-    @apply bg-background text-foreground font-sans antialiased;
+    background-color: #ffffff;
+    color: #111111;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-sans font-bold;
-  }
-}
-
-.glass-header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
