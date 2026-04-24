@@ -1,7 +1,14 @@
 @import "tailwindcss";
 
 @theme {
+  /* Font Mapping */
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  
+  /* Design Tokens Restoration */
+  --color-ink: #0C0608;
+  --color-emerald: #25D366;
+  --color-surface: #F3F4F6;
+  --color-background: #FFFFFF;
 }
 
 @layer base {
@@ -9,7 +16,13 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: #ffffff;
-    color: #111111;
+    font-family: var(--font-sans);
+    background-color: #FFFFFF;
+    color: #0C0608;
+  }
+  /* Force Montserrat 900 on all headers */
+  h1, h2, h3 {
+    font-family: var(--font-sans);
+    font-weight: 900;
   }
 }
