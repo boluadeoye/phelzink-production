@@ -16,49 +16,45 @@ const works = [
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="py-24 bg-ink text-white">
-      {/* STRICT BOXED CONTAINER: 1140px */}
-      <div className="max-w-[1140px] mx-auto px-6 md:px-12">
-        
+    <section id="portfolio" className="relative py-24 bg-ink text-white overflow-hidden">
+      {/* FIGMA BACKGROUND ASSET */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777032032/blog_assets/aw5gf8fwieyhlyzx1ueg.png"
+          alt="Portfolio Background"
+          fill
+          className="object-cover opacity-60"
+        />
+        <div className="absolute inset-0 bg-black/40" />
+      </div>
+
+      <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-black inline-block border-b-2 border-emerald pb-2 uppercase tracking-[0.2em] font-sans">
+          <h2 className="text-3xl font-black inline-block border-b-2 border-emerald pb-2 uppercase tracking-widest font-sans">
             Some of Our Works
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {works.map((work, index) => (
             <motion.div 
               key={index}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="group relative aspect-square overflow-hidden bg-white/5 border border-white/5"
+              className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10"
             >
-              {/* 
-                PRECISION LOGIC: 
-                1. No 'rounded' classes (Flat Edge).
-                2. 'grayscale' by default.
-                3. 'grayscale-0' on hover.
-              */}
+              {/* FIXED: Changed object-cover to object-contain to prevent cutting off projects */}
               <Image 
                 src={work.image}
                 alt={work.title}
                 fill
-                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-105 group-hover:scale-100"
+                className="object-contain p-4 transition-transform duration-700 group-hover:scale-110"
               />
-              
-              {/* Gradient Overlay for Text Legibility - Only visible on hover */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
-              
-              <div className="absolute bottom-0 left-0 p-6 w-full z-20 translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <p className="text-[11px] font-black text-emerald uppercase tracking-[0.2em] mb-2">
-                  Project 0{index + 1}
-                </p>
-                <p className="text-sm font-black leading-tight text-white font-sans uppercase tracking-wider">
-                  {work.title}
-                </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+              <div className="absolute bottom-0 left-0 p-5 w-full">
+                <p className="text-sm font-bold leading-tight text-white group-hover:text-emerald transition-colors font-sans">{work.title}</p>
               </div>
             </motion.div>
           ))}
