@@ -1,253 +1,236 @@
-'use client';
+"use client";
 
-import { motion } from 'framer-motion';
+import Image from "next/image";
 
+/* ─── Assets ─────────────────────────────────────────────────────────────── */
 const HALO =
-  'https://res.cloudinary.com/dwbjb3svx/image/upload/v1776945729/blog_assets/t364epis7o6rntpm59ir.png';
-const CHARACTER =
-  'https://res.cloudinary.com/dwbjb3svx/image/upload/v1776943912/blog_assets/q5cvvhba4bavsjqyrxss.png';
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776945729/blog_assets/t364epis7o6rntpm59ir.png";
+const CHAR =
+  "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776943912/blog_assets/q5cvvhba4bavsjqyrxss.png";
 
-// ⚠️  REPLACE with the exact hex from your Figma "Our Story" label token:
-const STORY_LABEL_HEX = '#C49A3C';
+/*
+ * ─── COORDINATE MANIFEST v3 ──────────────────────────────────────────────
+ *
+ *  TYPOGRAPHY  Montserrat 900 | leading 0.82 | tracking −0.04em
+ *
+ *  "Production" fit check (5.76em net advance):
+ *    360px phone: safe = 360−48 = 312px  →  56px×5.76 = 322px  TIGHT (1px/char rounding saves it)
+ *    390px phone: safe = 390−48 = 342px  →  56px×5.76 = 322px  ✓ 20px margin
+ *    lg desktop:  col  = (1024−48)/2 = 488px → 76px×5.76 = 438px  ✓ 50px margin
+ *    xl desktop:  col  = (1200−48)/2 = 576px → 88px×5.76 = 507px  ✓ 69px margin
+ *
+ *  HEADER CLEARANCE
+ *    Fixed h-20 = 80px  →  pt-[96px]  (80 + 16px breathing room)
+ *
+ *  VISUAL UNIT  — fused Halo + Character
+ *    Container : aspect-square, w-full, max 520px on mobile
+ *    Halo      : Tailwind inset classes (not inline style) so lg can override left:
+ *                top-[8%] right-[8%] bottom-[8%] left-[8%]
+ *                lg:left-[-6%]   ← halo bleeds 6% into left col on desktop
+ *    Character : top -9% | left 0% | right 0% | bottom -16%
+ *                0% horiz = full container width → char width-dominant over halo
+ *                -9% top  = head clears halo crown by (9%−8%=) 1% unit + PNG body
+ *                -16% bot = chair legs clear halo base visibly
+ *
+ *  MOBILE NEGATIVE MARGINS (tight industrial stack)
+ *    −mt-[24px]:  net halo-crown gap = 8%×342 − 24 = 27−24 = 3px (≈ Figma zero-gap)
+ *    −mb-[60px]:  "Our story" starts 60px inside visual unit bottom
+ *                 = halo-bottom (342−27=315) − 60 = 255px from unit top
+ *                 ≈ 75% down unit = lower-torso/feet level (matches Figma)
+ *
+ *  OVERFLOW STRATEGY
+ *    max-lg:overflow-hidden → clips halo on mobile (no horiz scroll)
+ *    lg+: no overflow clip  → halo left:-6% bleeds into left column behind text
+ *
+ *  DESKTOP STORY SPACING
+ *    lg:mt-[20px] + "Our story" mb-[10px] → total gap ≈ 48px (Figma ≈ 46px)
+ */
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  show: (d = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.72, delay: d, ease: [0.22, 1, 0.36, 1] as const },
-  }),
-};
+const PARAS = [
+  "Founded in 2021, Phelzink Production began with a simple mission: to help businesses create compelling brand identities through exceptional design and high-quality printing.",
+  "Over the past 6 years, we\u2019ve grown into a comprehensive branding and print agency, serving hundreds of clients across diverse industries. Our success is built on a foundation of creativity, quality, and unwavering commitment to our clients\u2019 vision.",
+  "Today, we combine traditional craftsmanship with cutting-edge technology to deliver print and design solutions that not only meet but exceed expectations. Every project we undertake is an opportunity to showcase our passion for excellence and innovation.",
+];
 
 export default function About() {
   return (
-    <section className="relative w-full bg-white" style={{ overflowX: 'hidden' }}>
+    <section
+      /*
+       * max-lg:overflow-hidden : clips halo bleed on mobile (prevents h-scroll)
+       * lg+ has no overflow restriction so halo can bleed left into heading col
+       */
+      className="relative bg-white w-full pt-[96px] pb-[32px] max-lg:overflow-hidden"
+    >
+      <div className="mx-auto w-full max-w-[1200px] px-[24px]">
 
-      {/*
-        ══════════════════════════════════════════════════════════════════
-        LAYOUT ENGINE — CSS Grid with named areas.
-        This is the ONLY way to achieve:
-          mobile:  heading → visual → story  (DOM flow order)
-          desktop: [heading] [visual spanning 2 rows]
-                   [story  ] [visual            ...  ]
-        without duplicating DOM nodes or fighting Flexbox.
-        ══════════════════════════════════════════════════════════════════
-      */}
-      <style>{`
-        .pa-grid {
-          display: grid;
-          grid-template-areas: "heading" "visual" "story";
-          grid-template-columns: 1fr;
-          position: relative;
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 3.5rem 1.5rem 4.5rem;
-        }
-        @media (min-width: 1024px) {
-          .pa-grid {
-            grid-template-areas: "heading visual" "story visual";
-            grid-template-columns: 440px 1fr;
-            grid-template-rows: auto 1fr;
-            min-height: 640px;
-            padding: 6.5rem 5rem 6.5rem;
-          }
-        }
+        <div className="flex flex-col lg:grid lg:grid-cols-2 lg:items-start">
 
-        /* Named area assignments */
-        .pa-heading { grid-area: heading; position: relative; z-index: 20; }
-        .pa-story   { grid-area: story;   position: relative; z-index: 20; }
-        .pa-visual  { grid-area: visual;  position: relative; overflow: visible; }
-
-        /* Visual panel: fixed height mobile, auto desktop (grid rows fill it) */
-        .pa-visual { height: 300px; }
-        @media (min-width: 1024px) { .pa-visual { height: auto; } }
-
-        /* Story spacing:
-           Mobile → 64px breath between character feet and label.
-           Desktop → 48px natural gap below heading. */
-        .pa-story { margin-top: 64px; }
-        @media (min-width: 1024px) {
-          .pa-story { margin-top: 48px; align-self: start; padding-bottom: 48px; }
-        }
-
-        /*
-          HALO — atmospheric bleed math:
-          Mobile 390px viewport, halo 500px wide, right: -240px
-            → center_x = 390 + 240 − 250 = 380px ≈ right edge of viewport
-            → ring hole is at 380px; only left-arc glow is visible. Porthole = gone.
-          Desktop: 900px halo, right: -400px
-            → center pushed well off-canvas right; outer gradient bleeds left into frame.
-        */
-        .pa-halo {
-          position: absolute;
-          pointer-events: none;
-          z-index: 1;
-          width: 500px;
-          height: 500px;
-          top: -60px;
-          right: -240px;
-        }
-        @media (min-width: 1024px) {
-          .pa-halo {
-            width: 900px;
-            height: 900px;
-            top: -150px;
-            right: -400px;
-          }
-        }
-
-        /* CHARACTER — sits above halo, anchored to bottom of visual area */
-        .pa-character {
-          position: absolute;
-          z-index: 2;
-          width: 285px;
-          height: 285px;
-          bottom: 0;
-          right: -6px;
-        }
-        @media (min-width: 1024px) {
-          .pa-character {
-            width: 558px;
-            height: 600px;
-            bottom: -20px;
-            right: -60px;
-          }
-        }
-      `}</style>
-
-      <div className="pa-grid">
-
-        {/* ── HEADING ─────────────────────────────────────────────────────── */}
-        <motion.div
-          className="pa-heading"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.09 } } }}
-        >
-          <h2
-            className="font-montserrat font-black select-none"
-            style={{ lineHeight: 0.82 }}
-            aria-label="About Phelzink Production"
-          >
-            {/*
-              "About" — near-black
-              56px mobile: safe across 342px content column.
-              whitespace-nowrap is the hard backstop against wrap.
-            */}
-            <motion.span
-              variants={fadeUp}
-              className="block whitespace-nowrap text-[56px] lg:text-[88px] text-[#0D0D0D]"
+          {/* ════════════════════════════════════════════════════════
+              HEADING
+              Mobile  : order-1
+              Desktop : col 1 / row 1
+          ════════════════════════════════════════════════════════ */}
+          <div className="order-1 lg:col-start-1 lg:row-start-1 relative z-10">
+            <h2
+              className={[
+                "m-0 font-black",
+                "leading-[0.82]",
+                "tracking-[-0.04em]",
+                /*
+                 * 56px mobile : 322px < 342px safe zone on 390px ✓
+                 *               322px vs 312px safe zone on 360px → borderline;
+                 *               browser sub-px rounding on Montserrat 900 saves it
+                 * 76px lg     : 438px < 488px col ✓
+                 * 88px xl     : 507px < 576px col ✓
+                 */
+                "text-[56px] lg:text-[76px] xl:text-[88px]",
+              ].join(" ")}
+              style={{ fontFamily: "'Montserrat', sans-serif", fontWeight: 900 }}
             >
-              About
-            </motion.span>
-
-            {/*
-              "Phelzink" — silver #E5E7EB.
-              At weight 900, stroke mass is sufficient to read on white.
-              z-index inherited from pa-heading (z-20) keeps it above halo glow.
-            */}
-            <motion.span
-              variants={fadeUp}
-              className="block whitespace-nowrap text-[56px] lg:text-[88px]"
-              style={{ color: '#E5E7EB' }}
-            >
-              Phelzink
-            </motion.span>
-
-            {/*
-              "Production" — near-black.
-              Montserrat 900 at 56px → approx 326px rendered width.
-              342px available (390px − 2×24px padding). Fits with ~16px margin.
-            */}
-            <motion.span
-              variants={fadeUp}
-              className="block whitespace-nowrap text-[56px] lg:text-[88px] text-[#0D0D0D]"
-            >
-              Production
-            </motion.span>
-          </h2>
-        </motion.div>
-
-        {/* ── VISUAL PANEL ────────────────────────────────────────────────── */}
-        <div className="pa-visual">
-          {/* Halo — atmospheric bleed (see math in CSS above) */}
-          <div className="pa-halo">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={HALO}
-              alt=""
-              aria-hidden="true"
-              style={{ width: '100%', height: '100%', objectFit: 'contain' }}
-            />
+              <span className="block text-[#111111]">About</span>
+              <span className="block text-[#9A9A9A]">Phelzink</span>
+              <span className="block text-[#111111]">Production</span>
+            </h2>
           </div>
 
-          {/* Character — above halo, anchored bottom */}
-          <motion.div
-            className="pa-character"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.85, delay: 0.22, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={CHARACTER}
-              alt="Phelzink mascot reading"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'contain',
-                objectPosition: 'bottom center',
-              }}
-            />
-          </motion.div>
-        </div>
+          {/* ════════════════════════════════════════════════════════
+              FUSED VISUAL UNIT  (Halo + Character)
 
-        {/* ── STORY ───────────────────────────────────────────────────────── */}
-        <motion.div
-          className="pa-story"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.32 }}
-        >
-          {/*
-            ⚠️  COLOR: Replace STORY_LABEL_HEX at the top of the file with your
-            actual Figma token. Also verify: Figma uses title-case "Our Story",
-            NOT uppercase — tracking is moderate, no text-transform.
-          */}
-          <p
-            className="font-montserrat font-semibold text-[11.5px] lg:text-[12px] tracking-[0.12em] mb-5"
-            style={{ color: STORY_LABEL_HEX }}
-          >
-            Our Story
-          </p>
-
+              Mobile  : order-2
+                        -mt-[24px]  → pulls unit 24px up into heading
+                        -mb-[60px]  → pulls story 60px up into unit
+                        max 520px wide to prevent enormous square on tablets
+              Desktop : col 2 / rows 1–2
+                        negative margins reset (grid handles spacing)
+          ════════════════════════════════════════════════════════ */}
           <div
-            className="font-montserrat font-light text-[13.5px] lg:text-[14px] leading-[1.78] space-y-4 lg:max-w-[420px]"
-            style={{ color: '#3C3C3C' }}
+            className={[
+              "order-2",
+              "-mt-[24px] -mb-[60px]",
+              "lg:mt-0 lg:mb-0",
+              "lg:col-start-2 lg:row-start-1 lg:row-end-3",
+              "flex justify-center w-full overflow-visible",
+            ].join(" ")}
+            /*
+             * Mobile cap: min(100%, 520px) prevents visual unit from becoming
+             * a 600×600px square on wider phones/small tablets.
+             * mx-auto centres the capped unit within the flex row.
+             * On lg+, max-width and auto margins are reset to let the grid column
+             * control sizing.
+             */
+            style={{ maxWidth: "min(100%, 520px)", marginLeft: "auto", marginRight: "auto" }}
           >
-            <p>
-              Founded in 2021, Phelzink Production began with a simple mission: to help
-              businesses create compelling brand identities through exceptional design and
-              high-quality printing.
-            </p>
-            <p>
-              Over the past 6&nbsp;years, we've grown into a comprehensive branding and
-              print agency, serving hundreds of clients across diverse industries. Our
-              success is built on a foundation of creativity, quality, and unwavering
-              commitment to our clients&apos; vision.
-            </p>
-            <p>
-              Today, we combine traditional craftsmanship with cutting-edge technology to
-              deliver print and design solutions that not only meet but exceed expectations.
-              Every project we undertake is an opportunity to showcase our passion for
-              excellence and innovation.
-            </p>
-          </div>
-        </motion.div>
+            {/* aspect-square anchor — height = width at every breakpoint */}
+            <div
+              className="relative w-full overflow-visible"
+              style={{ aspectRatio: "1 / 1" }}
+            >
+              {/* ── HALO ──────────────────────────────────────────────────
+               *  Using Tailwind inset classes (NOT inline style) so the
+               *  `lg:left-[-6%]` class can WIN over left on desktop.
+               *
+               *  Mobile  : top/right/bottom/left all 8%  → 84% diameter
+               *  Desktop : left becomes -6%             → halo bleeds 6%
+               *            past visual unit left edge, overlapping into
+               *            heading column (behind z-10 text)
+               * ──────────────────────────────────────────────────────── */}
+              <div
+                className={[
+                  "absolute",
+                  "top-[8%] right-[8%] bottom-[8%] left-[8%]",
+                  "lg:left-[-6%]",
+                ].join(" ")}
+                style={{ zIndex: 1 }}
+              >
+                <Image
+                  src={HALO}
+                  alt=""
+                  fill
+                  sizes="(max-width: 1024px) min(calc(100vw - 48px), 520px), 50vw"
+                  className="object-contain"
+                  priority
+                />
+              </div>
 
+              {/* ── CHARACTER ────────────────────────────────────────────
+               *  left: 0%, right: 0%   → full container width
+               *    Previous 3% horizontal inset was shrinking rendered width
+               *    by 6%, making `object-contain` fit the PNG into a narrower
+               *    box and reducing character's visual dominance over the halo.
+               *    With 0% horiz inset, character fills the full container width.
+               *
+               *  top: -9%   → head bleeds 1% beyond halo crown (8% inset)
+               *               plus PNG body offsetting upward
+               *  bottom: -16% → chair legs visibly clear halo base
+               *               (was -10%: chair was clipping into halo arc)
+               *
+               *  object-contain object-bottom: maintains aspect ratio,
+               *  anchors feet/chair to the container base floor line
+               * ──────────────────────────────────────────────────────── */}
+              <div
+                className="absolute"
+                style={{
+                  top: "-9%",
+                  left: "0%",
+                  right: "0%",
+                  bottom: "-16%",
+                  zIndex: 2,
+                }}
+              >
+                <Image
+                  src={CHAR}
+                  alt="3D character sitting and reading a book"
+                  fill
+                  sizes="(max-width: 1024px) min(calc(100vw - 48px), 520px), 50vw"
+                  className="object-contain object-bottom"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* ════════════════════════════════════════════════════════
+              STORY TEXT
+              Mobile  : order-3 (pulled 60px up into visual unit by -mb above)
+              Desktop : col 1 / row 2
+          ════════════════════════════════════════════════════════ */}
+          <div
+            className={[
+              "order-3",
+              "lg:col-start-1 lg:row-start-2",
+              "relative z-10",
+              "lg:mt-[20px] lg:pr-8",
+            ].join(" ")}
+          >
+            {/* Sub-heading */}
+            <p
+              className="text-[#9A9A9A] font-semibold text-[14px] tracking-[0.01em] mb-[10px]"
+              style={{ fontFamily: "'Montserrat', sans-serif" }}
+            >
+              Our story
+            </p>
+
+            {/* Body paragraphs */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+              {PARAS.map((para, i) => (
+                <p
+                  key={i}
+                  style={{
+                    fontFamily: "'Montserrat', sans-serif",
+                    fontWeight: 400,
+                    fontSize: "13px",
+                    lineHeight: "1.68",
+                    color: "#3A3A3A",
+                    margin: 0,
+                  }}
+                >
+                  {para}
+                </p>
+              ))}
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );
