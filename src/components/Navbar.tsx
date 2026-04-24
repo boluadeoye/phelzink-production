@@ -6,12 +6,11 @@ import MobileMenu from "./MobileMenu";
 import CircularLogo from "./CircularLogo";
 
 const Navbar = () => {
-  const[isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <>
       <nav className="fixed top-0 w-full z-50 bg-white border-b border-gray-100">
-        {/* FIXED: Increased padding (px-8 md:px-16) to push logo away from the edge */}
         <div className="max-w-[1440px] mx-auto px-8 md:px-16 h-[70px] flex items-center justify-between relative">
           
           <Link href="/" className="flex items-center z-10">
@@ -32,7 +31,7 @@ const Navbar = () => {
 
           <div className="hidden md:flex items-center z-10">
             <Link 
-              href="https://wa.me/2348125821771"
+              href="https://wa.me/2347072580692"
               target="_blank"
               className="flex items-center gap-2 bg-[#25D366] text-white px-6 py-2.5 rounded-full text-[13px] font-bold hover:brightness-110 transition-all shadow-sm font-sans uppercase tracking-wider"
             >
