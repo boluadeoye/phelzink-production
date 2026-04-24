@@ -1,23 +1,23 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 const HALO =
   'https://res.cloudinary.com/dwbjb3svx/image/upload/v1776945729/blog_assets/t364epis7o6rntpm59ir.png';
 const CHARACTER =
   'https://res.cloudinary.com/dwbjb3svx/image/upload/v1776943912/blog_assets/q5cvvhba4bavsjqyrxss.png';
 
-const stagger = {
+const stagger: Variants = {
   hidden: {},
   show: { transition: { staggerChildren: 0.09 } },
 };
 
-const line = {
+const line: Variants = {
   hidden: { opacity: 0, y: 28 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.72, ease: [0.22, 1, 0.36, 1] },
+    transition: { duration: 0.72, ease:[0.22, 1, 0.36, 1] as any },
   },
 };
 
@@ -114,7 +114,7 @@ export default function About() {
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.85, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                transition={{ duration: 0.85, delay: 0.25, ease: [0.22, 1, 0.36, 1] as any }}
                 className="absolute"
                 style={{
                   width: '310px',
@@ -220,7 +220,7 @@ export default function About() {
               initial={{ opacity: 0, x: 48 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.95, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.95, delay: 0.18, ease:[0.22, 1, 0.36, 1] as any }}
               className="absolute"
               style={{
                 width: '560px',
