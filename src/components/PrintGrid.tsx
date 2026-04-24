@@ -3,38 +3,14 @@ import React from "react";
 import Image from "next/image";
 
 const printItems = [
-  { 
-    name: "Business card", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966611/blog_assets/ztoq9ulwhs5aediqpaep.jpg" 
-  },
-  { 
-    name: "Tote Bag", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966683/blog_assets/gmvamzgx64nzhyncubut.jpg" 
-  },
-  { 
-    name: "Rollup Banner", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776964692/blog_assets/rrnnxvdirxnwgx38pleh.png" 
-  },
-  { 
-    name: "Paper Bag", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966644/blog_assets/zqfmntpvxfbjxeufdtbf.jpg" 
-  },
-  { 
-    name: "Notepad", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966619/blog_assets/uz3v9tbajsmdmpsvwq2w.jpg" 
-  },
-  { 
-    name: "Car branding", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776962932/blog_assets/jrxejsjpcfykcjtlwa66.png" 
-  },
-  { 
-    name: "Sticker", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776963022/blog_assets/f7jlnijocdlllilmojvm.png" 
-  },
-  { 
-    name: "Fly banner", 
-    image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776964635/blog_assets/odvq6w74giuziq4zxs3z.png" 
-  },
+  { name: "Business card", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966611/blog_assets/ztoq9ulwhs5aediqpaep.jpg" },
+  { name: "Tote Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966683/blog_assets/gmvamzgx64nzhyncubut.jpg" },
+  { name: "Rollup Banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776964692/blog_assets/rrnnxvdirxnwgx38pleh.png" },
+  { name: "Paper Bag", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966644/blog_assets/zqfmntpvxfbjxeufdtbf.jpg" },
+  { name: "Notepad", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776966619/blog_assets/uz3v9tbajsmdmpsvwq2w.jpg" },
+  { name: "Car branding", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776962932/blog_assets/jrxejsjpcfykcjtlwa66.png" },
+  { name: "Sticker", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776963022/blog_assets/f7jlnijocdlllilmojvm.png" },
+  { name: "Fly banner", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776964635/blog_assets/odvq6w74giuziq4zxs3z.png" },
 ];
 
 const PrintGrid = () => {
@@ -63,7 +39,7 @@ const PrintGrid = () => {
                   src={item.image}
                   alt={item.name}
                   fill
-                  className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700 ease-out"
+                  className="object-cover group-hover:scale-105 transition-all duration-700 ease-out"
                 />
               </div>
               <span className="text-[14px] font-bold text-ink/80 group-hover:text-emerald transition-colors font-sans pb-2">

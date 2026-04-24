@@ -23,9 +23,9 @@ const Portfolio = () => {
           src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777032032/blog_assets/aw5gf8fwieyhlyzx1ueg.png"
           alt="Portfolio Background"
           fill
-          className="object-cover opacity-60"
+          className="object-cover opacity-40"
         />
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12">
@@ -45,12 +45,12 @@ const Portfolio = () => {
               transition={{ delay: index * 0.05 }}
               className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10"
             >
-              {/* FIXED: Changed object-cover to object-contain to prevent cutting off projects */}
+              {/* RULE: Grayscale by default, Color on Hover, Object-Contain */}
               <Image 
                 src={work.image}
                 alt={work.title}
                 fill
-                className="object-contain p-4 transition-transform duration-700 group-hover:scale-110"
+                className="object-contain p-4 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
               <div className="absolute bottom-0 left-0 p-5 w-full">
