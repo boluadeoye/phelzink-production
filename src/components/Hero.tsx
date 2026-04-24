@@ -55,7 +55,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-black/75 z-[1]" />
       </div>
 
-      {/* Navigation Arrows - Pushed to absolute edges */}
+      {/* Navigation Arrows */}
       <button 
         onClick={prevImage}
         className="absolute left-2 md:left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/20 backdrop-blur-sm border border-white/10 flex items-center justify-center text-white/70 hover:text-white hover:bg-black/40 transition-all z-30"
@@ -69,26 +69,27 @@ const Hero = () => {
         <ChevronRight size={20} />
       </button>
 
-      <div className="relative z-10 w-full max-w-[1280px] mx-auto px-12 md:px-20 text-center text-white mt-8">
-        {/* MOBILE HEADING: Forced 3 Lines */}
+      <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 md:px-20 text-center text-white mt-8">
+        
+        {/* MOBILE HEADING: FORCED 3 LINES */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden text-[32px] font-black tracking-[-0.02em] mb-6 font-sans leading-[1.1]"
+          className="md:hidden text-[32px] font-black tracking-[-0.02em] mb-6 font-sans leading-[1.1] flex flex-col items-center"
         >
-          Transform Your Brand <br />
-          with Creative Design <br />
-          & Print Solutions
+          <span className="whitespace-nowrap">Transform Your Brand</span>
+          <span className="whitespace-nowrap">with Creative Design</span>
+          <span className="whitespace-nowrap">& Print Solutions</span>
         </motion.h1>
 
-        {/* DESKTOP HEADING: Forced 2 Lines */}
+        {/* DESKTOP HEADING: FORCED 2 LINES */}
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="hidden md:block text-[52px] lg:text-[64px] font-black tracking-[-0.02em] mb-6 font-sans leading-[1.1]"
+          className="hidden md:flex flex-col items-center text-[clamp(40px,5vw,64px)] font-black tracking-[-0.02em] mb-6 font-sans leading-[1.1]"
         >
-          Transform Your Brand with <br />
-          Creative Design & Print Solutions
+          <span className="whitespace-nowrap">Transform Your Brand with</span>
+          <span className="whitespace-nowrap">Creative Design & Print Solutions</span>
         </motion.h1>
 
         <motion.p 
