@@ -37,8 +37,9 @@ export default function Contact() {
           
           {/* LEFT COLUMN */}
           <div className="md:col-span-5 flex flex-col">
-            <h2 className="text-[44px] md:text-[52px] font-extrabold tracking-tight leading-[1.05] text-[#0C0608] mb-10 md:mb-12">
-              Contact <br className="hidden md:block" /> Information
+            {/* PERFECTED HEADER: Scaled down, single line locked */}
+            <h2 className="text-[26px] md:text-[32px] lg:text-[36px] whitespace-nowrap font-extrabold tracking-tight text-[#0C0608] mb-8 md:mb-10">
+              Contact Information
             </h2>
             <div className="flex flex-col gap-8 mb-12">
               <div className="flex gap-5 items-start">
@@ -91,8 +92,9 @@ export default function Contact() {
 
           {/* RIGHT COLUMN */}
           <div className="md:col-span-7 flex flex-col">
-            <h2 className="text-[44px] md:text-[52px] font-extrabold tracking-tight leading-[1.05] text-[#0C0608] mb-10 md:mb-12">
-              Send Us a <br className="hidden md:block" /> Message
+            {/* PERFECTED HEADER: Scaled down, single line locked */}
+            <h2 className="text-[26px] md:text-[32px] lg:text-[36px] whitespace-nowrap font-extrabold tracking-tight text-[#0C0608] mb-8 md:mb-10">
+              Send Us a Message
             </h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
               
@@ -108,13 +110,13 @@ export default function Contact() {
                 <input required type="email" name="email" placeholder="Enter your email" className="w-full h-[64px] px-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium text-[#0C0608] placeholder:text-[#888888]" />
               </div>
 
-              {/* 3. Phone (RESTORED) */}
+              {/* 3. Phone */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#0C0608] pl-1">Phone Number</label>
                 <input type="tel" name="phone" placeholder="Enter your number" className="w-full h-[64px] px-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium text-[#0C0608] placeholder:text-[#888888]" />
               </div>
 
-              {/* 4. Service (RESTORED) */}
+              {/* 4. Service */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#0C0608] pl-1">Service Interested In *</label>
                 <select required name="service" defaultValue="" className="w-full h-[64px] px-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium appearance-none text-[#0C0608]" style={{ backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230C0608%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1.5rem center', backgroundSize: '1.2em' }}>
