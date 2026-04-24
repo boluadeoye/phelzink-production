@@ -1,145 +1,139 @@
-'use client'
+'use client';
 
-import React from 'react'
-import { motion, Variants } from 'framer-motion'
+import { motion, Variants } from 'framer-motion';
+import Image from 'next/image';
 
-const HALO =
-  'https://res.cloudinary.com/dwbjb3svx/image/upload/v1776945729/blog_assets/t364epis7o6rntpm59ir.png'
-const CHARACTER =
-  'https://res.cloudinary.com/dwbjb3svx/image/upload/v1776943912/blog_assets/q5cvvhba4bavsjqyrxss.png'
+/* ─── Asset URLs ─────────────────────────────────────────────────────────── */
+// The Halo PNG has been eradicated in favor of a high-performance CSS Gradient.
+const CHARACTER = 'https://res.cloudinary.com/dwbjb3svx/image/upload/v1776943912/blog_assets/q5cvvhba4bavsjqyrxss.png';
 
-const easeStd = [0.16, 1, 0.3, 1] as any
+/* ─── Framer Motion Config (TypeScript Safe) ─────────────────────────────── */
+const stagger: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.09 } },
+};
 
-const containerV: Variants = {
-  hidden: { opacity: 0, y: 16 },
+const line: Variants = {
+  hidden: { opacity: 0, y: 28 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: easeStd },
+    transition: { duration: 0.72, ease:[0.22, 1, 0.36, 1] as any },
   },
-}
-
-const haloV: Variants = {
-  hidden: { opacity: 0, scale: 1.2 },
-  show: {
-    opacity: 1,
-    scale: 1.65,
-    transition: { duration: 0.9, ease: easeStd, delay: 0.05 },
-  },
-}
-
-const charV: Variants = {
-  hidden: { opacity: 0, y: 18 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: easeStd, delay: 0.12 },
-  },
-}
+};
 
 export default function About() {
   return (
-    <section
-      id="about"
-      className="relative w-full overflow-hidden px-4 py-12 sm:px-6 md:py-20"
-      style={{
-        fontFamily:
-          'Montserrat, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"',
-      }}
-    >
-      {/* 12-column grid activates strictly at md */}
-      <div className="mx-auto max-w-[1200px] md:grid md:grid-cols-12 md:gap-x-[96px]">
-        {/* Visual Anchor: Hero on mobile, contained on desktop */}
-        <motion.div
-          variants={containerV}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-10%' }}
-          className="relative order-1 mb-10 w-full md:order-2 md:col-span-5 md:col-start-8 md:mb-0 md:justify-self-end"
-        >
-          <div
-            className="relative mx-auto h-[50vh] min-h-[340px] w-full overflow-hidden rounded-none md:h-[650px] md:w-[520px] md:max-w-[520px]"
-            aria-hidden
-          >
-            {/* HALO — oversized and off-center so the inner hole is never visible */}
-            <motion.img
-              variants={haloV}
-              src={HALO}
-              alt=""
-              className="
-                pointer-events-none absolute -left-[46%] -top-[44%] z-0
-                h-[220%] w-[220%] select-none object-contain opacity-90
-                blur-[1px] md:opacity-95
-              "
-              style={{
-                filter:
-                  'saturate(112%) brightness(100%) contrast(102%) drop-shadow(0 0 40px rgba(255,255,255,0.35))',
-              }}
-            />
-            {/* CHARACTER — sits above halo, anchored to bottom for presence */}
-            <motion.img
-              variants={charV}
-              src={CHARACTER}
-              alt="Phelzink Production character"
-              className="
-                absolute inset-x-0 bottom-0 z-10 mx-auto h-[78%] w-auto
-                md:h-full md:max-h-[650px] object-contain
-                drop-shadow-[0_22px_60px_rgba(0,0,0,0.35)]
-              "
-            />
-          </div>
-        </motion.div>
+    <section id="about" className="relative w-full bg-white overflow-hidden pt-16 pb-20 lg:pt-28 lg:pb-32">
+      <div className="relative mx-auto max-w-[1280px] px-6 md:px-12">
+        
+        {/* ══════════════════════════════════════════════════════════════
+            THE COMPOSITOR GRID
+        ══════════════════════════════════════════════════════════════ */}
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between lg:gap-x-12">
 
-        {/* Editorial Pillar: locked 440px on desktop with wide gap to visual */}
-        <motion.div
-          variants={containerV}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-10%' }}
-          className="order-2 md:order-1 md:col-span-6 md:col-start-1"
-        >
-          <div className="md:w-[440px] md:max-w-[440px]">
-            <h1
-              className="
-                font-black leading-[0.72] tracking-[-0.01em] text-neutral-900
-                [text-wrap:balance]
-              "
+          {/* ── LEFT: THE EDITORIAL PILLAR (Z-20) ── */}
+          <div className="relative z-20 w-full lg:w-[440px] lg:flex-none flex flex-col">
+            
+            {/* HEADING: 8.5vw guarantees no-wrap on any mobile device */}
+            <motion.h2
+              variants={stagger}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true, margin: '-60px' }}
+              className="font-sans font-black select-none tracking-[-0.04em]"
+              style={{ lineHeight: 0.72 }}
             >
-              <span className="block text-[clamp(28px,6.3vw,54px)]">About</span>
-              <span className="block text-[clamp(28px,6.3vw,54px)] text-[#949494]">
+              <motion.span variants={line} className="block whitespace-nowrap text-[clamp(28px,8.5vw,82px)] text-[#111111]">
+                About
+              </motion.span>
+              {/* Visible Silver (#A3A3A3) */}
+              <motion.span variants={line} className="block whitespace-nowrap text-[clamp(28px,8.5vw,82px)] text-[#A3A3A3]">
                 Phelzink
-              </span>
-              {/* Mobile No-Wrap lock: 9.2vw ensures 'Production' stays on one line at ~390px */}
-              <span className="block whitespace-nowrap text-[9.2vw] md:text-[54px]">
+              </motion.span>
+              <motion.span variants={line} className="block whitespace-nowrap text-[clamp(28px,8.5vw,82px)] text-[#111111]">
                 Production
-              </span>
-            </h1>
+              </motion.span>
+            </motion.h2>
 
-            <div className="mt-8">
-              <h2 className="mb-4 text-lg font-semibold text-neutral-700">Our story</h2>
-              <div className="space-y-5 text-[15.5px] leading-7 text-neutral-800 md:leading-7">
+            {/* ── MOBILE VISUAL UNIT (Hero Scale, Z-10) ── */}
+            <div className="lg:hidden relative w-full h-[45vh] min-h-[380px] mt-10 mb-10 pointer-events-none">
+              
+              {/* CSS HALO: Infinite atmospheric bleed, zero porthole */}
+              <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] aspect-square bg-[radial-gradient(circle,rgba(253,232,255,0.85)_0%,rgba(224,231,255,0.5)_40%,rgba(255,255,255,0)_70%)] blur-[60px] z-0 will-change-transform" />
+              
+              {/* CHARACTER: Height-locked, anchored to bottom, drop-shadow for depth */}
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.85, delay: 0.25, ease:[0.22, 1, 0.36, 1] as any }}
+                className="absolute inset-x-0 bottom-0 h-[95%] z-10"
+              >
+                <Image 
+                  src={CHARACTER} 
+                  alt="Phelzink Character" 
+                  fill 
+                  sizes="100vw" 
+                  className="object-contain object-bottom drop-shadow-[0_20px_40px_rgba(0,0,0,0.12)]" 
+                  priority 
+                />
+              </motion.div>
+            </div>
+
+            {/* ── STORY COPY (Protected Zone) ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.35, ease: 'easeOut' }}
+              className="mt-0 lg:mt-16 relative z-20"
+            >
+              <h3 className="font-sans text-[20px] lg:text-[22px] font-extrabold text-[#111111] mb-5 tracking-tight">
+                Our story
+              </h3>
+              <div className="font-sans font-medium text-[14px] lg:text-[15px] leading-[1.8] text-[#3A3A3A] space-y-5 max-w-[95%] lg:max-w-none">
                 <p>
-                  Founded in 2021, Phelzink Production began with a simple mission: to help
-                  businesses create compelling brand identities through exceptional design
-                  and high‑quality printing.
+                  Founded in 2021, Phelzink Production began with a simple mission: to help businesses create compelling brand identities through exceptional design and high-quality printing.
                 </p>
                 <p>
-                  Over the past 6 years, we've grown into a comprehensive branding and
-                  print agency, serving hundreds of clients across diverse industries. Our
-                  success is built on a foundation of creativity, quality, and unwavering
-                  commitment to our clients' vision.
+                  Over the past 6 years, we've grown into a comprehensive branding and print agency, serving hundreds of clients across diverse industries. Our success is built on a foundation of creativity, quality, and unwavering commitment to our clients' vision.
                 </p>
                 <p>
-                  Today, we combine traditional craftsmanship with cutting‑edge technology
-                  to deliver print and design solutions that not only meet but exceed
-                  expectations. Every project we undertake is an opportunity to showcase
-                  our passion for excellence and innovation.
+                  Today, we combine traditional craftsmanship with cutting-edge technology to deliver print and design solutions that not only meet, but exceed expectations. Every project we undertake is an opportunity to showcase our passion for excellence and innovation.
                 </p>
               </div>
-            </div>
+            </motion.div>
+
           </div>
-        </motion.div>
+
+          {/* ── RIGHT: DESKTOP VISUAL UNIT (Anchor Scale, Z-10) ── */}
+          <div className="hidden lg:block relative flex-1 w-full max-w-[600px] h-[650px] pointer-events-none">
+            
+            {/* CSS HALO: Desktop Bleed */}
+            <div className="absolute top-[45%] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle,rgba(253,232,255,0.85)_0%,rgba(224,231,255,0.5)_40%,rgba(255,255,255,0)_70%)] blur-[80px] z-0 will-change-transform" />
+            
+            {/* CHARACTER: Desktop Anchor */}
+            <motion.div
+              initial={{ opacity: 0, x: 48 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.95, delay: 0.18, ease:[0.22, 1, 0.36, 1] as any }}
+              className="absolute inset-x-0 bottom-0 h-[95%] z-10"
+            >
+              <Image 
+                src={CHARACTER} 
+                alt="Phelzink Character" 
+                fill 
+                sizes="50vw" 
+                className="object-contain object-bottom drop-shadow-[0_30px_60px_rgba(0,0,0,0.12)]" 
+                priority 
+              />
+            </motion.div>
+          </div>
+
+        </div>
       </div>
     </section>
-  )
+  );
 }
