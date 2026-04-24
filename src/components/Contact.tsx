@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { Send } from "lucide-react";
 
 export default function Contact() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -37,7 +38,6 @@ export default function Contact() {
           
           {/* LEFT COLUMN */}
           <div className="md:col-span-5 flex flex-col">
-            {/* PERFECTED HEADER: Scaled down, single line locked */}
             <h2 className="text-[26px] md:text-[32px] lg:text-[36px] whitespace-nowrap font-extrabold tracking-tight text-[#0C0608] mb-8 md:mb-10">
               Contact Information
             </h2>
@@ -92,31 +92,22 @@ export default function Contact() {
 
           {/* RIGHT COLUMN */}
           <div className="md:col-span-7 flex flex-col">
-            {/* PERFECTED HEADER: Scaled down, single line locked */}
             <h2 className="text-[26px] md:text-[32px] lg:text-[36px] whitespace-nowrap font-extrabold tracking-tight text-[#0C0608] mb-8 md:mb-10">
               Send Us a Message
             </h2>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              
-              {/* 1. Name */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#0C0608] pl-1">Your Name *</label>
                 <input required name="name" placeholder="Enter your name" className="w-full h-[64px] px-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium text-[#0C0608] placeholder:text-[#888888]" />
               </div>
-              
-              {/* 2. Email */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#0C0608] pl-1">Email Address *</label>
                 <input required type="email" name="email" placeholder="Enter your email" className="w-full h-[64px] px-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium text-[#0C0608] placeholder:text-[#888888]" />
               </div>
-
-              {/* 3. Phone */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#0C0608] pl-1">Phone Number</label>
                 <input type="tel" name="phone" placeholder="Enter your number" className="w-full h-[64px] px-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium text-[#0C0608] placeholder:text-[#888888]" />
               </div>
-
-              {/* 4. Service */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#0C0608] pl-1">Service Interested In *</label>
                 <select required name="service" defaultValue="" className="w-full h-[64px] px-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium appearance-none text-[#0C0608]" style={{ backgroundImage: 'url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%230C0608%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E")', backgroundRepeat: 'no-repeat', backgroundPosition: 'right 1.5rem center', backgroundSize: '1.2em' }}>
@@ -131,15 +122,19 @@ export default function Contact() {
                   <option value="General Branding/Design">General Branding/Design</option>
                 </select>
               </div>
-
-              {/* 5. Message */}
               <div className="flex flex-col gap-2.5">
                 <label className="text-[11px] uppercase tracking-[0.2em] font-extrabold text-[#0C0608] pl-1">Message *</label>
                 <textarea required name="message" placeholder="Enter your message" className="w-full min-h-[160px] p-6 rounded-2xl bg-[#F3F4F6] border-none focus:ring-2 focus:ring-[#0C0608] outline-none text-[15px] font-medium resize-none text-[#0C0608] placeholder:text-[#888888]" />
               </div>
 
-              <button type="submit" disabled={status !== "idle"} className="w-full h-[68px] bg-[#0C0608] text-white rounded-2xl text-[16px] flex items-center justify-center gap-3 hover:opacity-90 transition-all active:scale-[0.98] disabled:opacity-70 mt-2 font-bold">
-                {status === "idle" ? "Send Message" : status === "loading" ? "Sending..." : "Message Sent!"}
+              {/* THE TELEGRAM BUTTON */}
+              <button type="submit" disabled={status !== "idle"} className="group w-full h-[68px] bg-[#0C0608] text-white rounded-2xl text-[16px] flex items-center justify-center gap-3 hover:bg-[#222222] transition-all active:scale-[0.98] disabled:opacity-70 mt-2 font-bold">
+                {status === "idle" ? (
+                  <>
+                    <Send className="w-5 h-5 -rotate-12 -translate-y-[1px] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                    <span>Send Message</span>
+                  </>
+                ) : status === "loading" ? "Sending..." : "Message Sent!"}
               </button>
             </form>
           </div>
