@@ -59,9 +59,9 @@ export default function About() {
 
             {/* ── MOBILE VISUAL UNIT (Nudged down via mt-20) ── */}
             <div className="md:hidden relative w-full h-[400px] mt-20 mb-16 pointer-events-none">
-              {/* HALO: Scaled 160% and shifted right */}
-              <div className="absolute top-1/2 right-[-40%] w-[160%] aspect-square -translate-y-1/2 z-0">
-                <Image src={HALO} alt="" fill sizes="100vw" className="object-contain opacity-90" priority />
+              {/* HALO: Reduced to 125% and shifted right-[-20%] to maintain the bleed without overwhelming the screen */}
+              <div className="absolute top-1/2 right-[-20%] w-[125%] aspect-square -translate-y-1/2 z-0">
+                <Image src={HALO} alt="" fill sizes="100vw" className="object-contain opacity-80" priority />
               </div>
               {/* CHARACTER: Anchored to the bottom */}
               <motion.div
