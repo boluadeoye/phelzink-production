@@ -11,14 +11,14 @@ const CircularLogo = ({ className = "w-32 h-32" }: { className?: string }) => {
         className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]"
       >
         <defs>
-          {/* The Original Perfect Circle Path */}
+          {/* Radius increased to 40 to prevent text collision */}
           <path
             id="circlePath"
-            d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+            d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
           />
         </defs>
-        {/* FIXED: Reduced tracking to 0.14em to prevent the tail from overlapping the head */}
-        <text className="text-[8.5px] font-bold uppercase tracking-[0.14em] fill-ink font-sans">
+        {/* Font size reduced and tracking optimized for zero overlap */}
+        <text className="text-[7px] font-bold uppercase tracking-[0.12em] fill-ink font-sans">
           <textPath xlinkHref="#circlePath" startOffset="0%">
             Phelzink Productions • Phelzink Productions •
           </textPath>
@@ -29,7 +29,7 @@ const CircularLogo = ({ className = "w-32 h-32" }: { className?: string }) => {
       <div className="relative w-[45%] h-[45%]">
         <Image
           src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688534/blog_assets/fkckb41bhbezjlcpjhnl.png"
-          alt="Phelzink Logo"
+          alt="P"
           fill
           className="object-contain"
         />
