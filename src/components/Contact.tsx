@@ -56,30 +56,30 @@ const Contact = () => {
               </div>
             </div>
 
-            {/* THE MAP: SINGLE LAYER ONLY */}
-            <div className="relative rounded-[32px] overflow-hidden border border-ink/5 h-[400px] shadow-2xl">
+            {/* THE MAP: CLEAN ARCHITECTURE */}
+            <div className="relative rounded-[32px] overflow-hidden border border-ink/5 h-[400px] shadow-2xl bg-[#E5E7EB]">
+              {/* Live Map Layer - No background images allowed here */}
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.053347474164!2d3.3743!3d6.5142!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8cf0f0f0f0f0%3A0x0!2zNsKwMzAnNTEuMSJOIDPCsDIyJzI3LjUiRQ!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng" 
-                className="absolute inset-0 w-full h-full grayscale contrast-[1.1] brightness-[1.05]" 
+                className="absolute inset-0 w-full h-full grayscale contrast-[1.1] brightness-[1.05] z-0" 
                 style={{ border: 0 }} 
                 allowFullScreen 
                 loading="lazy" 
               />
               
-              {/* THE ONLY FUNCTIONAL BUTTON */}
-              <div className="absolute top-6 left-6 z-20">
+              {/* UI OVERLAYS: PURE CSS LAYERS */}
+              <div className="absolute top-6 left-6 z-10">
                 <a 
                   href={googleMapsUrl} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="bg-white px-6 py-3 rounded-2xl text-[14px] font-black text-ink flex items-center gap-2 shadow-xl hover:bg-ink hover:text-white transition-all duration-300"
+                  className="bg-white px-5 py-3 rounded-2xl text-[14px] font-black text-ink flex items-center gap-2 shadow-xl hover:bg-ink hover:text-white transition-all duration-300"
                 >
                   Open in Maps <ExternalLink size={16} />
                 </a>
               </div>
               
-              {/* EXPAND BUTTON */}
-              <div className="absolute bottom-6 right-6 z-20">
+              <div className="absolute bottom-6 right-6 z-10">
                 <button 
                   onClick={() => window.open(googleMapsUrl, '_blank')} 
                   className="bg-[#25D366] p-4 rounded-2xl text-white shadow-xl hover:scale-110 transition-all duration-300"
@@ -88,12 +88,12 @@ const Contact = () => {
                 </button>
               </div>
 
-              {/* THUMBNAIL */}
-              <div className="absolute bottom-6 left-6 z-20">
+              <div className="absolute bottom-6 left-6 z-10">
                 <div className="w-20 h-20 rounded-2xl border-4 border-white shadow-2xl overflow-hidden">
-                   <div 
-                    className="w-full h-full bg-cover bg-center" 
-                    style={{ backgroundImage: "url('https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688504/blog_assets/gjf6nnbcko5jjauryamd.png')" }} 
+                   <img 
+                    src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776688504/blog_assets/gjf6nnbcko5jjauryamd.png"
+                    alt="Location Preview"
+                    className="w-full h-full object-cover"
                    />
                 </div>
               </div>
