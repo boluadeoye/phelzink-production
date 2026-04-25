@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const CTA = () => {
   return (
-    <section className="relative w-full py-24 md:py-32 overflow-hidden flex items-center justify-center">
+    <section className="relative w-full py-24 md:py-40 overflow-hidden flex items-center justify-center">
       
       {/* BACKGROUND LAYER: CMYK Rollers */}
       <div
@@ -23,12 +23,17 @@ const CTA = () => {
       {/* CONTENT LAYER: Precision Alignment */}
       <div className="relative z-10 flex flex-col items-center text-center text-white px-6 w-full max-w-[1280px] mx-auto">
         
-        {/* HEADING: Forced "Brand?" isolation */}
-        <h2 className="text-[clamp(32px,6vw,64px)] font-black tracking-[-0.04em] leading-[1.05] mb-6 drop-shadow-2xl">
-          Ready to Elevate Your <br /> Brand?
+        {/* HEADING: Responsive Line Breaks */}
+        <h2 className="text-[32px] md:text-[56px] lg:text-[64px] font-black tracking-[-0.04em] leading-[1.05] mb-6 drop-shadow-2xl">
+          Ready to Elevate 
+          <br className="block md:hidden" /> {/* Mobile Break 1 */}
+          Your 
+          <br className="hidden md:block" /> {/* Desktop Break */}
+          <br className="block md:hidden" /> {/* Mobile Break 2 */}
+          Brand?
         </h2>
 
-        {/* SUBTEXT: Exact Figma line breaks */}
+        {/* SUBTEXT: Forced 2-line break exactly after "something" */}
         <p className="text-[16px] md:text-[18px] lg:text-[20px] font-medium text-white/90 mb-10 leading-relaxed drop-shadow-md">
           Let's collaborate to create something <br />
           extraordinary. Get in touch with us today.
