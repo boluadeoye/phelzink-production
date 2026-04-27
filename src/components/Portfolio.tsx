@@ -16,45 +16,50 @@ const works = [
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="relative py-24 bg-ink text-white overflow-hidden">
+    <section id="portfolio" className="relative py-24 bg-black text-white overflow-hidden">
       {/* FIGMA BACKGROUND ASSET */}
       <div className="absolute inset-0 z-0">
-        <Image 
+        <Image
           src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777032032/blog_assets/aw5gf8fwieyhlyzx1ueg.png"
           alt="Portfolio Background"
           fill
-          className="object-cover opacity-40"
+          className="object-cover opacity-30"
         />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black" />
       </div>
 
-      <div className="relative z-10 max-w-[1280px] mx-auto px-6 md:px-12">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-black inline-block border-b-2 border-emerald pb-2 uppercase tracking-widest font-sans">
+      <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-16">
+        <div className="mb-16">
+          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans">
             Some of Our Works
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {works.map((work, index) => (
-            <motion.div 
+            <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="group relative aspect-square overflow-hidden rounded-xl bg-white/5 border border-white/10"
+              className="group bg-[#111111] p-4 rounded-[24px] border border-white/5 hover:border-emerald/30 transition-all duration-500 flex flex-col h-full"
             >
-              {/* RULE: Grayscale by default, Color on Hover, Object-Contain */}
-              <Image 
-                src={work.image}
-                alt={work.title}
-                fill
-                className="object-contain p-4 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
-              <div className="absolute bottom-0 left-0 p-5 w-full">
-                <p className="text-sm font-bold leading-tight text-white group-hover:text-emerald transition-colors font-sans">{work.title}</p>
+              {/* Inner Image Wrapper */}
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] bg-black/40">
+                <Image
+                  src={work.image}
+                  alt={work.title}
+                  fill
+                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                />
+              </div>
+              
+              {/* Text Content */}
+              <div className="mt-5 px-1 flex-grow">
+                <p className="text-[14px] font-bold leading-tight text-white/90 group-hover:text-emerald transition-colors font-sans uppercase tracking-wide">
+                  {work.title}
+                </p>
               </div>
             </motion.div>
           ))}
