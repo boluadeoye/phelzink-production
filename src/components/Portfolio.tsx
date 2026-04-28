@@ -17,11 +17,11 @@ const works = [
 const Portfolio = () => {
   return (
     <section id="portfolio" className="relative py-24 bg-black text-white overflow-hidden">
-      {/* FIGMA BACKGROUND ASSET */}
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0">
         <Image
           src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777032032/blog_assets/aw5gf8fwieyhlyzx1ueg.png"
-          alt="Portfolio Background"
+          alt="Background"
           fill
           className="object-cover opacity-30"
         />
@@ -35,27 +35,30 @@ const Portfolio = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {works.map((work, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 10 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: index * 0.05 }}
-              className="group relative aspect-[4/3] w-full overflow-hidden rounded-none border-[0.5px] border-white/40 bg-[#0a0a0a]"
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              className="group relative aspect-[4/3] w-full overflow-hidden border-[0.5px] border-white/20 bg-[#0a0a0a]"
             >
-              {/* Image with 'object-contain' to show full asset without cutting */}
-              <Image
-                src={work.image}
-                alt={work.title}
-                fill
-                className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-              />
+              {/* THE FIX: Inner wrapper handles Zoom and Grayscale simultaneously */}
+              <div className="relative w-full h-full p-6 transition-all duration-700 ease-in-out transform group-hover:scale-110 grayscale group-hover:grayscale-0">
+                <Image
+                  src={work.image}
+                  alt={work.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 25vw"
+                />
+              </div>
 
-              {/* Bottom Caption Bar */}
-              <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm py-2 px-3 border-t-[0.5px] border-white/20 z-20">
-                <p className="text-[11px] md:text-[12px] font-bold text-white/90 font-sans uppercase tracking-wide underline decoration-1 underline-offset-4">
+              {/* Caption Bar */}
+              <div className="absolute bottom-0 left-0 right-0 bg-black/90 backdrop-blur-md py-3 px-4 border-t-[0.5px] border-white/10 z-20">
+                <p className="text-[10px] md:text-[11px] font-black text-white uppercase tracking-widest underline decoration-1 underline-offset-4">
                   {work.title}
                 </p>
               </div>
