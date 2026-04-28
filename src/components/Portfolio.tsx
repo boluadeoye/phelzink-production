@@ -29,13 +29,14 @@ const Portfolio = () => {
       </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-16">
-        <div className="mb-16">
-          <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans">
+        <div className="mb-12">
+          <h2 className="inline-block text-3xl md:text-4xl font-bold font-sans border-b-2 border-white pb-1">
             Some of Our Works
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+        {/* GRID SYSTEM: 4 Columns, Sharp Edges */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {works.map((work, index) => (
             <motion.div
               key={index}
@@ -43,21 +44,19 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="group bg-[#111111] p-4 rounded-[24px] border border-white/5 hover:border-emerald/30 transition-all duration-500 flex flex-col h-full"
+              className="group relative aspect-[4/3] w-full overflow-hidden rounded-none border border-white/40 bg-[#111]"
             >
-              {/* Inner Image Wrapper */}
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[16px] bg-black/40">
-                <Image
-                  src={work.image}
-                  alt={work.title}
-                  fill
-                  className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                />
-              </div>
-              
-              {/* Text Content */}
-              <div className="mt-5 px-1 flex-grow">
-                <p className="text-[14px] font-bold leading-tight text-white/90 group-hover:text-emerald transition-colors font-sans uppercase tracking-wide">
+              {/* Image Layer: Preserving Grayscale & Zoom */}
+              <Image
+                src={work.image}
+                alt={work.title}
+                fill
+                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+              />
+
+              {/* Caption Overlay: Bottom-aligned, Underlined Text */}
+              <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm py-2 px-3 border-t border-white/10">
+                <p className="text-[11px] md:text-[12px] font-medium text-white/90 font-sans underline underline-offset-4 decoration-white/50">
                   {work.title}
                 </p>
               </div>
