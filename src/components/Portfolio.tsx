@@ -29,34 +29,33 @@ const Portfolio = () => {
       </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-16">
-        <div className="mb-12">
-          <h2 className="inline-block text-3xl md:text-4xl font-bold font-sans border-b-2 border-white pb-1">
+        <div className="mb-16">
+          <h2 className="inline-block text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans border-b-2 border-white pb-1">
             Some of Our Works
           </h2>
         </div>
 
-        {/* GRID SYSTEM: 4 Columns, Sharp Edges */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-4">
           {works.map((work, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.05 }}
-              className="group relative aspect-[4/3] w-full overflow-hidden rounded-none border border-white/40 bg-[#111]"
+              className="group relative aspect-[4/3] w-full overflow-hidden rounded-none border-[0.5px] border-white/40 bg-[#0a0a0a]"
             >
-              {/* Image Layer: Preserving Grayscale & Zoom */}
+              {/* Image with 'object-contain' to show full asset without cutting */}
               <Image
                 src={work.image}
                 alt={work.title}
                 fill
-                className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
+                className="object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
               />
 
-              {/* Caption Overlay: Bottom-aligned, Underlined Text */}
-              <div className="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm py-2 px-3 border-t border-white/10">
-                <p className="text-[11px] md:text-[12px] font-medium text-white/90 font-sans underline underline-offset-4 decoration-white/50">
+              {/* Bottom Caption Bar */}
+              <div className="absolute bottom-0 left-0 right-0 bg-black/80 backdrop-blur-sm py-2 px-3 border-t-[0.5px] border-white/20 z-20">
+                <p className="text-[11px] md:text-[12px] font-bold text-white/90 font-sans uppercase tracking-wide underline decoration-1 underline-offset-4">
                   {work.title}
                 </p>
               </div>
