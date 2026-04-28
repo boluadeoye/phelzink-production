@@ -29,9 +29,9 @@ const Portfolio = () => {
       </div>
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-16">
-        <div className="mb-16">
-          {/* FIGMA MATCH: 1px underline, specific padding */}
-          <h2 className="inline-block text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans border-b-[1px] border-white pb-2">
+        {/* ALIGNMENT FIX: Centered on mobile, Left-aligned on desktop */}
+        <div className="mb-16 flex justify-center md:justify-start">
+          <h2 className="inline-block text-center md:text-left text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans border-b-[1px] border-white pb-2">
             Some of Our Works
           </h2>
         </div>
