@@ -17,8 +17,9 @@ const Footer = () => {
           
           {/* COLUMN 1: BRAND ANCHOR (Hero-Mirror Logo System) */}
           <div className="flex flex-col items-start">
+            {/* THE NUCLEUS-ORBIT SYSTEM */}
             <div className="relative flex items-center justify-center w-32 h-32 md:w-44 md:h-44 mb-8 -ml-4 md:-ml-6">
-              {/* Layer 1: Rotating Text Orbit */}
+              {/* Layer 1: Rotating Text Orbit (Background) */}
               <div className="absolute inset-0 animate-[spin_20s_linear_infinite]">
                 <img 
                   src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777339414/blog_assets/qtdzmk2rofmtblsb5zou.png" 
@@ -26,7 +27,7 @@ const Footer = () => {
                   className="w-full h-full object-contain opacity-90"
                 />
               </div>
-              {/* Layer 2: Static Nucleus Logo */}
+              {/* Layer 2: Static Nucleus Logo (Foreground) */}
               <div className="relative w-12 h-12 md:w-16 md:h-16 -rotate-12">
                 <img 
                   src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776962525/blog_assets/tzasw1vrukgoz1proi8j.png" 
@@ -35,6 +36,7 @@ const Footer = () => {
                 />
               </div>
             </div>
+            
             <p className="text-[#808080] text-[15px] leading-[1.7] max-w-[280px] font-medium">
               Your trusted partner for designing, branding, and printing solutions that bring your vision to life.
             </p>
