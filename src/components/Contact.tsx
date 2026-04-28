@@ -78,10 +78,10 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* MAP CONTAINER: Precision Coordinates for 24 Oguntolu St, Shomolu */}
+            {/* MAP CONTAINER: Direct Query Lock for 24 Oguntolu St */}
             <div className="w-full h-[300px] rounded-3xl overflow-hidden bg-[#F3F4F6] border border-gray-200">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.9516!2d3.3815!3d6.5312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d1966666667%3A0x6666666666666666!2s24%20Oguntolu%20St%2C%20Somolu%2C%20Lagos!5e0!3m2!1sen!2sng!4v1714300000000!5m2!1sen!2sng"
+                src="https://maps.google.com/maps?q=24%20Oguntolu%20Street,%20Shomolu,%20Lagos&t=&z=17&ie=UTF8&iwloc=&output=embed"
                 className="w-full h-full" 
                 style={{ border: 0 }} 
                 allowFullScreen 
