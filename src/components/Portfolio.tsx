@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const works = [
+const works =[
   { title: "Coca-cola Light Signage", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776693451/blog_assets/cbpl6ila0f91jr0ityc4.png" },
   { title: "Joy Gondola product display stands", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776693462/blog_assets/cpbpvdzrojkj5xqx16hk.png" },
   { title: "Moniepoint keyholder", image: "https://res.cloudinary.com/dwbjb3svx/image/upload/v1776693472/blog_assets/qxgaimzbfugztvqmydby.png" },
@@ -30,11 +30,13 @@ const Portfolio = () => {
 
       <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-16">
         <div className="mb-16">
-          <h2 className="inline-block text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans border-b-2 border-white pb-1">
+          {/* FIGMA MATCH: 1px underline, specific padding */}
+          <h2 className="inline-block text-3xl md:text-4xl font-black uppercase tracking-tighter font-sans border-b-[1px] border-white pb-2">
             Some of Our Works
           </h2>
         </div>
 
+        {/* FIGMA MATCH: Strict 16px (gap-4) grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {works.map((work, index) => (
             <motion.div
@@ -43,10 +45,10 @@ const Portfolio = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="group relative aspect-[4/3] w-full overflow-hidden border-[0.5px] border-white/20 bg-[#0a0a0a]"
+              className="group relative aspect-[4/3] w-full overflow-hidden border-[0.5px] border-white/20 bg-[#0a0a0a] cursor-pointer"
             >
-              {/* THE FIX: Inner wrapper handles Zoom and Grayscale simultaneously */}
-              <div className="relative w-full h-full p-6 transition-all duration-700 ease-in-out transform group-hover:scale-110 grayscale group-hover:grayscale-0">
+              {/* INNER WRAPPER: Handles Zoom & Grayscale. p-4 ensures 'contain' never cuts. */}
+              <div className="absolute inset-0 p-4 transition-all duration-700 ease-[cubic-bezier(0.33,1,0.68,1)] will-change-transform transform group-hover:scale-110 grayscale group-hover:grayscale-0">
                 <Image
                   src={work.image}
                   alt={work.title}
@@ -56,9 +58,10 @@ const Portfolio = () => {
                 />
               </div>
 
-              {/* Caption Bar */}
-              <div className="absolute bottom-0 left-0 right-0 bg-black/90 backdrop-blur-md py-3 px-4 border-t-[0.5px] border-white/10 z-20">
-                <p className="text-[10px] md:text-[11px] font-black text-white uppercase tracking-widest underline decoration-1 underline-offset-4">
+              {/* CAPTION BAR: pointer-events-none ensures hover doesn't break when mouse is over text */}
+              <div className="absolute bottom-0 left-0 right-0 bg-black/90 backdrop-blur-md py-3 px-4 border-t-[0.5px] border-white/10 z-20 pointer-events-none">
+                {/* FIGMA MATCH: text-[10px], tracking-[0.2em], 0.5px underline */}
+                <p className="text-[10px] font-black text-white uppercase tracking-[0.2em] underline decoration-[0.5px] underline-offset-[6px]">
                   {work.title}
                 </p>
               </div>
