@@ -17,13 +17,36 @@ const Footer = () => {
           
           {/* COLUMN 1: BRAND ANCHOR */}
           <div className="flex flex-col items-start">
-            {/* SINGLE STATIC LOGO - NO ROTATION */}
-            <div className="relative w-32 h-32 md:w-48 md:h-48 mb-8 -ml-2">
-              <img
-                src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777339414/blog_assets/qtdzmk2rofmtblsb5zou.png"
-                alt="Phelzink Production"
-                className="w-full h-full object-contain"
-              />
+            
+            {/* THE NUCLEUS-ORBIT SYSTEM */}
+            <div className="relative grid place-items-center w-32 h-32 md:w-48 md:h-48 mb-8 -ml-4">
+              
+              {/* Layer 1: Rotating Text Orbit (SVG) */}
+              <svg
+                viewBox="0 0 100 100"
+                className="absolute inset-0 w-full h-full animate-[spin_20s_linear_infinite]"
+              >
+                <defs>
+                  <path
+                    id="footerCirclePath"
+                    d="M 50, 50 m -40, 0 a 40,40 0 1,1 80,0 a 40,40 0 1,1 -80,0"
+                  />
+                </defs>
+                <text className="text-[7.5px] font-bold uppercase tracking-[0.15em] fill-white/40 font-sans">
+                  <textPath xlinkHref="#footerCirclePath" startOffset="0%">
+                    Phelzink Production • Phelzink Production •
+                  </textPath>
+                </text>
+              </svg>
+
+              {/* Layer 2: Static Nucleus (New Logo Asset) */}
+              <div className="relative w-[55%] h-[55%] z-10">
+                <img
+                  src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777361257/blog_assets/slz8cnkgwuf2xplkodj2.png"
+                  alt="Phelzink"
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
 
             <p className="text-[#808080] text-[15px] leading-[1.7] max-w-[280px] font-medium">
