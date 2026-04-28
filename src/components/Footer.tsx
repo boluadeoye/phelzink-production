@@ -9,25 +9,24 @@ const Footer = () => {
   const linkedinUrl = "https://www.linkedin.com/";
 
   return (
-    <footer className="bg-black text-white pt-16 md:pt-24 pb-10 font-sans overflow-hidden">
+    <footer className="bg-black text-white pt-20 md:pt-28 pb-10 font-sans overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-8 md:px-16 lg:px-24">
         
         {/* OUTER GRID: Decouples Brand from Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_2.8fr] gap-16 lg:gap-24 mb-20 md:mb-28">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2.5fr] gap-16 lg:gap-24 mb-24 md:mb-32">
           
           {/* COLUMN 1: BRAND ANCHOR (Hero-Mirror Logo System) */}
           <div className="flex flex-col items-start">
-            {/* THE NUCLEUS-ORBIT SYSTEM */}
-            <div className="relative flex items-center justify-center w-32 h-32 md:w-44 md:h-44 mb-8 -ml-4 md:-ml-6">
-              {/* Layer 1: Rotating Text Orbit (Background) */}
+            <div className="relative flex items-center justify-center w-32 h-32 md:w-40 md:h-40 mb-10 -ml-4 md:-ml-6">
+              {/* Layer 1: Rotating Text Orbit */}
               <div className="absolute inset-0 animate-[spin_20s_linear_infinite]">
                 <img 
                   src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777339414/blog_assets/qtdzmk2rofmtblsb5zou.png" 
-                  alt="Rotating Text Orbit" 
+                  alt="Rotating Text" 
                   className="w-full h-full object-contain opacity-90"
                 />
               </div>
-              {/* Layer 2: Static Nucleus Logo (Foreground) */}
+              {/* Layer 2: Static Nucleus Logo */}
               <div className="relative w-12 h-12 md:w-16 md:h-16 -rotate-12">
                 <img 
                   src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776962525/blog_assets/tzasw1vrukgoz1proi8j.png" 
@@ -36,7 +35,6 @@ const Footer = () => {
                 />
               </div>
             </div>
-            
             <p className="text-[#808080] text-[15px] leading-[1.7] max-w-[280px] font-medium">
               Your trusted partner for designing, branding, and printing solutions that bring your vision to life.
             </p>
@@ -95,7 +93,7 @@ const Footer = () => {
                   </li>
                 </ul>
 
-                {/* SOCIAL ANCHOR: Hardened SVGs for Build Stability */}
+                {/* SOCIAL ANCHOR: Native SVGs for Build Stability */}
                 <div className="flex items-center gap-4 pt-4 border-t border-white/5">
                   {/* WhatsApp */}
                   <Link href={whatsappUrl} target="_blank" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-[#808080] hover:text-white hover:border-[#22C55E] hover:bg-[#22C55E]/10 transition-all">
