@@ -17,24 +17,13 @@ const Footer = () => {
           
           {/* COLUMN 1: BRAND ANCHOR */}
           <div className="flex flex-col items-start">
-            {/* THE NUCLEUS-ORBIT SYSTEM: Mathematical Stack */}
-            <div className="relative grid place-items-center w-32 h-32 md:w-48 md:h-48 mb-8">
-              {/* Layer 1: Orbit (Rotating) - Occupies full grid cell */}
-              <div className="grid-area-1 col-start-1 row-start-1 w-full h-full animate-[spin_20s_linear_infinite]">
-                <img
-                  src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777339414/blog_assets/qtdzmk2rofmtblsb5zou.png"
-                  alt="Orbit"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              {/* Layer 2: Nucleus (Static) - Forced to same mathematical center */}
-              <div className="grid-area-1 col-start-1 row-start-1 w-12 h-12 md:w-16 md:h-16 -rotate-12">
-                <img
-                  src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1776962525/blog_assets/tzasw1vrukgoz1proi8j.png"
-                  alt="P"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+            {/* SINGLE STATIC LOGO - NO ROTATION */}
+            <div className="relative w-32 h-32 md:w-48 md:h-48 mb-8 -ml-2">
+              <img
+                src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777339414/blog_assets/qtdzmk2rofmtblsb5zou.png"
+                alt="Phelzink Production"
+                className="w-full h-full object-contain"
+              />
             </div>
 
             <p className="text-[#808080] text-[15px] leading-[1.7] max-w-[280px] font-medium">
@@ -70,7 +59,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Sub-Col 3: Contact Us (Hardened SVGs) */}
+            {/* Sub-Col 3: Contact Us */}
             <div className="flex flex-col">
               <h4 className="text-[13px] font-[900] uppercase tracking-[0.3em] mb-10 text-white leading-none">
                 Contact Us
@@ -108,7 +97,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* BOTTOM BAR: Credit Hardening */}
+        {/* BOTTOM BAR */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/90 text-[14px] font-bold tracking-wide">
             © 2026 Phelzink Productions. All rights reserved.
