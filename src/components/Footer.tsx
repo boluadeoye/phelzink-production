@@ -120,9 +120,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* BOTTOM BAR */}
+        {/* BOTTOM BAR: Forced Single Line */}
         <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/90 text-[14px] font-bold tracking-wide">
+          <p className="text-white/90 text-[11px] sm:text-[14px] font-bold tracking-tight sm:tracking-wide whitespace-nowrap">
             © 2026 Phelzink Productions. All rights reserved.
           </p>
           <div className="text-white/30 text-[9px] font-[900] uppercase tracking-[0.3em] whitespace-nowrap">
