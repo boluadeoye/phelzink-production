@@ -33,13 +33,11 @@ export default function Contact() {
 
   return (
     <div id="contact" className="w-full flex flex-col">
-      
-      {/* ══════════════════════════════════════════════════════════════
-          THE "GET IN TOUCH" BANNER (Architectural Transition)
-      ══════════════════════════════════════════════════════════════ */}
+
+      {/* THE "GET IN TOUCH" BANNER */}
       <section className="relative w-full py-24 md:py-32 flex items-center justify-center overflow-hidden bg-black">
         <div className="absolute inset-0 z-0">
-          <Image 
+          <Image
             src="https://res.cloudinary.com/dwbjb3svx/image/upload/v1777468976/blog_assets/aqcba6hrjpsx1r2mstjz.jpg"
             alt="Architecture Background"
             fill
@@ -57,13 +55,11 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════════════
-          THE CONTACT FORM GRID (White Section)
-      ══════════════════════════════════════════════════════════════ */}
+      {/* THE CONTACT FORM GRID */}
       <section className="w-full bg-white py-20 md:py-32 overflow-hidden">
         <div className="mx-auto max-w-[1280px] px-6 md:px-12">
           <div className="flex flex-col md:grid md:grid-cols-12 gap-y-16 md:gap-x-12 lg:gap-x-20">
-            
+
             {/* LEFT COLUMN */}
             <div className="md:col-span-5 flex flex-col">
               <h2 className="text-[26px] md:text-[32px] lg:text-[36px] whitespace-nowrap font-extrabold tracking-tight text-[#0C0608] mb-8 md:mb-10">
@@ -111,9 +107,10 @@ export default function Contact() {
                 </div>
               </div>
               <div className="w-full h-[300px] rounded-3xl overflow-hidden bg-[#F3F4F6] border border-gray-200">
-                <iframe 
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3963.952912260219!2d3.3791153!3d6.5276316!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8d24c04d3e75%3A0x7347f1a6be13e004!2sOguntolu%20St%2C%20Somolu%20102216%2C%20Lagos!5e0!3m2!1sen!2sng!4v1710000000000!5m2!1sen!2sng" 
-                  className="w-full h-full" style={{ border: 0 }} allowFullScreen loading="lazy" 
+                {/* THE MAP FIX: Search-Query Embed to force the pin on Oguntolu Street */}
+                <iframe
+                  src="https://maps.google.com/maps?q=24,+Oguntolu+street,+Shomolu,+Lagos&t=&z=18&ie=UTF8&iwloc=&output=embed"
+                  className="w-full h-full" style={{ border: 0 }} allowFullScreen loading="lazy"
                 />
               </div>
             </div>
