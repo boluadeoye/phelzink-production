@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ink: #0C0608;
+  --color-emerald: #25D366;
+  --color-surface: #F3F4F6;
+  --color-background: #FFFFFF;
+  --font-sans: 'Montserrat', sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #FFFFFF;
+    color: #0C0608;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
